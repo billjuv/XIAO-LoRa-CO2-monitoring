@@ -18,7 +18,7 @@ A wireless CO₂, temperature, and humidity monitoring system for mushroom grow 
 - [InfluxDB & Grafana](#influxdb--grafana)
 - [SCD41 Calibration (FRC)](#scd41-calibration-frc)
 - [Known Issues & Lessons Learned](#known-issues--lessons-learned)
-- [License](#license)
+- [License](MIT))
 
 ---
 
