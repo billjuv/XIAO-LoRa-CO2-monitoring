@@ -356,11 +356,5 @@ Both XIAO units occasionally drop off at the same time. Monitored via a Grafana 
 
 ---
 
-## License
-
-*MIT*
-
----
-
 *Documentation by Bill Juv — part of the Nevada mushroom grow monitoring project.*  
 *Public project documentation: [billjuv.github.io](https://billjuv.github.io)*
