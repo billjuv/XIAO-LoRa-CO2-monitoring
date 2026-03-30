@@ -18,8 +18,7 @@ A wireless CO₂, temperature, and humidity monitoring system for mushroom grow 
 - [InfluxDB & Grafana](#influxdb--grafana)
 - [SCD41 Calibration (FRC)](#scd41-calibration-frc)
 - [Known Issues & Lessons Learned](#known-issues--lessons-learned)
-- [License](MIT))
-
+  
 ---
 
 ## Overview
@@ -359,7 +358,7 @@ Both XIAO units occasionally drop off at the same time. Monitored via a Grafana 
 
 ## License
 
-*[Add license — MIT recommended for public maker projects]*
+*MIT*
 
 ---
 
