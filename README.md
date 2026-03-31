@@ -107,8 +107,8 @@ Separating the sensor from the electronics keeps heat from the MCU and LoRa modu
 
 ### Wiring / Schematic
 
-<img src=Attachments/XAIO_batt_schematic.png width="80%"/>
-<img src=Attachments/XAIO_Board.png width="80%"/>
+<img src=Attachments/XAIO_Schematic.jpeg width="80%"/>
+<img src=Attachments/XAIO_Batt_Board.jpg width="80%"/>
 
 > *Gerber files located in Attachments Folder*
 
