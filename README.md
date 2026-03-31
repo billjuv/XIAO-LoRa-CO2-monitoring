@@ -18,6 +18,7 @@ A wireless CO₂, temperature, and humidity monitoring system for mushroom grow 
 - [InfluxDB & Grafana](#influxdb--grafana)
 - [SCD41 Calibration (FRC)](#scd41-calibration-frc)
 - [Known Issues & Lessons Learned](#known-issues--lessons-learned)
+- [Future Enhancements](#future-enhancements)
   
 ---
 
@@ -282,18 +283,23 @@ Wrapped payload format required by OMG:
 **Database:** `Sensors`  
 **Host:** MushRmPi (Raspberry Pi 4)
 
+### Data Write Method
+
+Data is written to InfluxDB via an **HTTP request node** in Node-RED (not the InfluxDB Out node). This gives direct control over the line protocol format and avoids compatibility issues with InfluxDB 1.x.
+
 ### Measurements & Fields
 
 | Measurement | Fields |
 |---|---|
-| `EZO_Test1_co2` | `co2`, `hum`, `tempF` |
+| `LoRa_XIAO1_co2` | `co2`, `hum`, `temp` |
+| `LoRa_XIAO2_co2` | `co2`, `hum`, `temp` |
 
-> ⚠️ **Note:** The measurement names above were inherited from the earlier EZO sensor era and may need updating to reflect the SCD41 hardware. Spaces in InfluxDB measurement names cause line protocol write errors — use underscores only.
+> ⚠️ Spaces in InfluxDB measurement names cause silent write failures in line protocol. Use underscores only.
 
 ### Grafana
 
 - Time-series panels for CO₂, temperature, and humidity per sensor
-- **State Timeline panel** used to passively monitor for simultaneous dropout of both XIAO units, which helped identify an intermittent connectivity issue
+- **State Timeline panel** used to passively monitor for simultaneous dropout of both XIAO units
 
 ---
 
@@ -352,7 +358,14 @@ LoRa packet loss probability is non-trivial. The Node-RED dashboard sends the FR
 Automatic CPU frequency scaling and light sleep interfered with the RadioLib interrupt-driven RX on battery power. Fixed by locking CPU to 240 MHz at boot.
 
 **Simultaneous dropout of both units**  
-Both XIAO units occasionally drop off at the same time. Monitored via a Grafana State Timeline panel. Root cause under investigation — suspected OMG gateway issue rather than sensor-side.
+Both XIAO units occasionally dropped off at the same time. Monitored via a Grafana State Timeline panel. Resolved — was a fluke related to power cycling and battery use at the time, not an ongoing issue.
+
+---
+
+## Future Enhancements
+
+- OTA firmware updates triggered via LoRa command, using WiFi over Tailscale for remote flashing without requiring a site visit to Nevada.
+- Temperature offset and altitude compensation controls added to the Node-RED FRC dashboard.
 
 ---
 
