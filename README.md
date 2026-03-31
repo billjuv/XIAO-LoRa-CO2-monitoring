@@ -24,13 +24,15 @@ A wireless CO₂, temperature, and humidity monitoring system for mushroom grow 
 
 ## Overview
 
-This project monitors CO₂ levels in the incubation and fruiting areas of a mushroom grow operation. Two identical sensor units are deployed, each transmitting wirelessly over LoRa to a central gateway.
+This project monitors CO₂ levels in the incubation and fruiting areas of a mushroom grow operation. At this time, two identical sensor units are deployed, each transmitting wirelessly over LoRa to a central gateway. The sensor nodes can be run on battery power and need to be moved outdoors for recalibration, or while determining optimal placement. 
+
 
 **Why LoRa instead of WiFi?**  
-The sensor nodes run on battery power and need to be moved for recalibration. LoRa allows untethered placement anywhere in the grow facility without needing WiFi credentials or network infrastructure changes.
+
+WiFi has it's challanges in the twin metal shipping containers in this operation. I want to test the reliability and range of LoRa in this situation and hopefully be ready for future growth. Ultimately, I wish to expand this to more remote areas of the farm as well.
 
 **Why SCD41 instead of the Atlas Scientific EZO-CO₂?**  
-The EZO sensors require lab-grade reference gases for recalibration and proved unreliable in this environment. The SCD41 supports Forced Recalibration (FRC) using outdoor air (~420 ppm), making field recalibration practical with just a short trip outside.
+The EZO sensors require lab-grade reference gases for recalibration and proved unreliable in this environment (one of two failed and the other EZO-CO2 sensor readings seem considerably lower than expected). The SCD41 supports Forced Recalibration (FRC) using outdoor air (~420 ppm), making field recalibration practical with just a short trip outside.
 
 ### System Architecture
 
@@ -48,7 +50,7 @@ The EZO sensors require lab-grade reference gases for recalibration and proved u
         ├── Node-RED  (dashboard, FRC commands, watchdog alerts)
         └── InfluxDB  (time-series storage → Grafana)
 ```
-
+Mycodo could be used if desired 
 ---
 
 ## Bill of Materials
@@ -303,7 +305,7 @@ Data is written to InfluxDB via an **HTTP request node** in Node-RED (not the In
 
 ---
 
-## SCD41 Calibration (FRC)
+## SCD41 Calibration (FRC) (See the Calibration.md file for more info)
 
 The SCD41 uses **Forced Recalibration (FRC)** rather than Automatic Self-Calibration (ASC). ASC assumes regular exposure to fresh outdoor air (~420 ppm), which does not happen in a sealed mushroom grow environment. ASC is disabled in firmware and the setting is persisted to EEPROM.
 
