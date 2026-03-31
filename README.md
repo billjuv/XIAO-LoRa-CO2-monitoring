@@ -110,9 +110,12 @@ Separating the sensor from the electronics keeps heat from the MCU and LoRa modu
 <img src=Attachments/Xiao_Board_Schematic.jpeg width="80%"/>
 <img src=Attachments/XIAO_Batt_Board.jpg width="80%"/>
 
-For other uses, board has additional access to XIAO GPIO pins if needed. Resistors for i2c (under XIAO) usually not needed but available. XIAO board has built-in battery charging circuitry.
-
 > **Note:** Gerber files located in Attachments Folder
+
+For other uses, board has additional access to XIAO GPIO pins if needed. Resistors for i2c (under XIAO) usually not needed but available. XIAO board has built-in battery charging circuitry. **Note:** The above board uses JST 2.0 connectors
+
+> ⚠️ LiPo batteries often have battery polarity reversed and can cause damage (easy to swap in JST 2.0 connector).
+
 
 ---
 
