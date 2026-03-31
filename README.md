@@ -49,29 +49,27 @@ The EZO sensors require lab-grade reference gases for recalibration and proved u
         |
         ├── Node-RED  (dashboard, FRC commands, watchdog alerts)
         └── InfluxDB  (time-series storage → Grafana)
+
+Mycodo could be installed in place of the InfluxDB/Grafana programs if desired. I started with Mycodo but found, in this operation, Node-RED and Flowfuse Dashboard 2.0 offered all the functionality needed with a better control dashboard on a mobile phone. All I ended up using Mycodo for was the built-in InfluxDB database and graphs. I switched over to stand-alone InfluxDB/Grafana programs for less overhead and prettier graphs.
+
 ```
-Mycodo could be used if desired 
+
 ---
 
 ## Bill of Materials
 
-| Component | Part | Source | Approx. Cost |
-|---|---|---|---|
-| MCU + LoRa | Seeed Studio XIAO ESP32S3 + Wio-SX1262 LoRa B2B Kit | Seeed Studio | *[fill in]* |
+| Component | Part | Source |
+|---|---|---|
+| MCU + LoRa | Seeed Studio XIAO ESP32S3 + Wio-SX1262 LoRa B2B Kit | Seeed Studio |
 | CO₂/Temp/RH Sensor | Adafruit SCD41 | Adafruit | *[fill in]* |
-| Battery Monitor | Adafruit MAX17048 LiPoly / LiIon Fuel Gauge | Adafruit | *[fill in]* |
-| Battery | 3.7V / 1800mAh LiPo | *[fill in]* | *[fill in]* |
-| LoRa Gateway | LilyGo T3 LoRa32 v1.6.1 | *[fill in]* | *[fill in]* |
-| Enclosure (MCU/battery) | Custom 3D printed box | — | filament cost |
-| Enclosure (sensor) | Custom 3D printed box | — | filament cost |
-| Sensor cable | *[fill in — length, connector type]* | *[fill in]* | *[fill in]* |
-| Waterproof USB-C connector | Female waterproof Type-C panel mount | *[fill in]* | *[fill in]* |
-| PTFE filter membranes | 20mm, 0.3µm pore, hydrophobic, adhesive-backed | *[fill in]* | *[fill in]* |
-
-**Tools needed:**
-- Soldering iron and solder
-- 3D printer (for enclosures)
-- Computer with PlatformIO/VSCode for flashing firmware
+| Battery Monitor | Adafruit MAX17048 LiPoly / LiIon Fuel Gauge | Adafruit |
+| Battery | 3.7V / 1800mAh LiPo | Amazon |
+| LoRa Gateway | LilyGo T3 LoRa32 v1.6.1 | AliExpress |
+| Enclosure (MCU/battery) | Custom 3D printed box | — |
+| Enclosure (sensor) | Custom 3D printed box | — |
+| Sensor cable | *[fill in — length, connector type]* | *[fill in]* |
+| Waterproof USB-C connector | Female waterproof Type-C panel mount | *[fill in]* |
+| PTFE filter membranes | 20mm, 0.3µm pore, hydrophobic, adhesive-backed | Amazon |
 
 ---
 
