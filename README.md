@@ -29,7 +29,7 @@ This project monitors CO₂ levels in the incubation and fruiting areas of a mus
 
 **Why LoRa instead of WiFi?**  
 
-WiFi has it's challanges in the twin metal shipping containers in this operation. I want to test the reliability and range of LoRa in this situation and hopefully be ready for future growth. Ultimately, I wish to expand this to more remote areas of the farm as well. **Note:** The LilyGo T3 LoRa32 running OpenMQTTGateway does require WiFi to send the data recieved to the MQTT broker.
+WiFi has it's challanges in the twin metal shipping containers in this mushroom grow space. I want to test the reliability and range of LoRa (not LoRaWAN) in this situation and hopefully be ready for future growth. Ultimately, I wish to expand this method to more remote areas of the farm as well. **Note:** The LilyGo T3 LoRa32 running OpenMQTTGateway does require WiFi to send the data recieved to the MQTT broker.
 
 **Why SCD41 instead of the Atlas Scientific EZO-CO₂?**  
 
@@ -53,9 +53,9 @@ The EZO sensors require lab-grade reference gases for recalibration and proved u
 
 ```
 
-**Why InfluxDB/Grafana instead of the Mycodo?** 
+**Why InfluxDB/Grafana instead of Mycodo?** 
 
-Mycodo could be installed in place of the InfluxDB/Grafana programs if desired. I started with Mycodo but found, in this operation, Node-RED and Flowfuse Dashboard 2.0 offered all the functionality needed with a better control dashboard on a mobile phone. All I ended up using Mycodo for was the built-in InfluxDB database and graphs. I switched over to stand-alone InfluxDB/Grafana programs for less overhead and prettier graphs.
+[Mycodo](https://kizniche.github.io/Mycodo/) could be installed in place of the InfluxDB/Grafana programs if desired. I started with Mycodo but found, in this operation, Node-RED and Flowfuse Dashboard 2.0 offered all the functionality needed with a better control dashboard on a mobile phone. All I ended up using Mycodo for was the built-in InfluxDB database and graphs. I switched over to stand-alone InfluxDB/Grafana programs for less overhead and prettier graphs.
 
 ---
 
@@ -163,7 +163,9 @@ The result will be something like `LoRa_XIAO1_2C02A7D4DB1C`. This name is used a
 | CPU frequency | Locked to 240 MHz — prevents light sleep from interfering with LoRa interrupts |
 | FRC duplicate guard | Ignores repeated FRC commands with the same target within 30 seconds |
 
-*9 seconds (being a non-round number) makes accidental sync less likely to persist even if they do start up at the same time
+*9 seconds (being a non-round number) makes accidental sync less likely to persist even if boards start up at the same time.
+
+---
 
 ### Remote Commands (via LoRa)
 
@@ -178,6 +180,8 @@ Commands are sent from Node-RED through the OMG gateway as JSON, targeted by dev
 | Get altitude | `{"target":"LoRa_XIAO1_2C02A7D4DB1C","get_altitude":true}` |
 
 > The OMG gateway wraps outgoing commands in a `message` field. The firmware handles both wrapped and unwrapped formats for flexibility.
+
+---
 
 ### Flashing
 
