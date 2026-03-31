@@ -29,7 +29,7 @@ This project monitors CO₂ levels in the incubation and fruiting areas of a mus
 
 **Why LoRa instead of WiFi?**  
 
-WiFi has it's challanges in the twin metal shipping containers in this operation. I want to test the reliability and range of LoRa in this situation and hopefully be ready for future growth. Ultimately, I wish to expand this to more remote areas of the farm as well.
+WiFi has it's challanges in the twin metal shipping containers in this operation. I want to test the reliability and range of LoRa in this situation and hopefully be ready for future growth. Ultimately, I wish to expand this to more remote areas of the farm as well. **Note:** The LilyGo T3 LoRa32 running OpenMQTTGateway does require WiFi to send the data recieved to the MQTT broker.
 
 **Why SCD41 instead of the Atlas Scientific EZO-CO₂?**  
 The EZO sensors require lab-grade reference gases for recalibration and proved unreliable in this environment (one of two failed and the other EZO-CO2 sensor readings seem considerably lower than expected). The SCD41 supports Forced Recalibration (FRC) using outdoor air (~420 ppm), making field recalibration practical with just a short trip outside.
