@@ -24,7 +24,7 @@ A wireless CO₂, temperature, and humidity monitoring system for mushroom grow 
 
 ## Overview
 
-This project monitors CO₂ levels in the incubation and fruiting areas of a mushroom grow operation. At this time, two identical sensor units are deployed, each transmitting wirelessly over LoRa to a central gateway. The sensor nodes can be run on battery power and need to be moved outdoors for recalibration, or while determining optimal placement. 
+This project monitors CO₂ levels in the incubation and fruiting areas of a mushroom grow operation. At this time, three identical sensor units are deployed, each transmitting wirelessly over LoRa to a central gateway. The sensor nodes can be run on battery power and need to be moved outdoors for recalibration, or while determining optimal placement. 
 
 
 **Why LoRa instead of WiFi?**  
@@ -33,7 +33,8 @@ WiFi has it's challanges in the twin metal shipping containers in this mushroom 
 
 **Why SCD41 instead of the Atlas Scientific EZO-CO₂?**  
 
-The EZO sensors require lab-grade reference gases for recalibration and proved unreliable in this environment (one of two failed and the other EZO-CO2 sensor readings seem considerably lower than expected). The SCD41 supports Forced Recalibration (FRC) using outdoor air (~420 ppm), making field recalibration practical with just a short trip outside.
+The EZO sensors require lab-grade reference gases for recalibration and proved unreliable in this environment (one of two failed and the other EZO-CO2 sensor readings seem considerably lower than expected). The SCD41 supports Forced Recalibration (FRC) using outdoor air (~420 ppm), making field recalibration practical with just a short trip outside. 
+**Note:** The SCD41 has a maximum CO₂ reading of 5000 ppm, whereas the Atlas EZO-CO₂ max is 10,000 ppm. This should not be a problem in most cases as you want to keep the CO₂ level in fruiting well below 1000. During incubation, levels of 10,000 to 20,000 ppm are common - which is beyond the EZO's capabilities as well.
 
 ### System Architecture
 
