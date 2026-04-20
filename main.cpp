@@ -22,7 +22,10 @@
 //  6-byte MAC address is appended automatically as a suffix.
 //  ============================================================
 
-#define DEVICE_BASE_NAME "LoRa_XIAO2"   // <-- CHANGE THIS for each unit
+//#define DEVICE_BASE_NAME "LoRa_XIAO1"   // <-- CHANGE THIS for each unit
+//#define DEVICE_BASE_NAME "LoRa_XIAO_CO2_1"
+//#define DEVICE_BASE_NAME "LoRa_XIAO_CO2_2"
+#define DEVICE_BASE_NAME "LoRa_XIAO_CO2_3"
 
 #include <Arduino.h>
 #include <Wire.h>
@@ -48,7 +51,7 @@ bool batteryAvailable = false;
 // --- Measurement interval ---
 // 9 seconds (not 10) to avoid packet collisions between two units
 // transmitting on the same LoRa frequency
-const unsigned long MEAS_INTERVAL_MS = 9000;
+const unsigned long MEAS_INTERVAL_MS = 31000;
 unsigned long lastRead = 0;
 
 // --- Last-good readings (used if sensor read fails) ---
