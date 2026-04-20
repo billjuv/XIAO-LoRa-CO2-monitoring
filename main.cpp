@@ -49,8 +49,8 @@ Adafruit_MAX17048 maxlipo;
 bool batteryAvailable = false;
 
 // --- Measurement interval ---
-// 9 seconds (not 10) to avoid packet collisions between two units
-// transmitting on the same LoRa frequency
+// initially 9 seconds (not 10) to avoid packet collisions between two units
+// transmitting on the same LoRa frequency. Changed to 31 (still odd number)
 const unsigned long MEAS_INTERVAL_MS = 31000;
 unsigned long lastRead = 0;
 
