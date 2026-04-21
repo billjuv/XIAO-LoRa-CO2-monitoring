@@ -24,12 +24,12 @@ A wireless CO₂, temperature, and humidity monitoring system for mushroom grow 
 
 ## Overview
 
-This project monitors CO₂ levels in the incubation and fruiting areas of a mushroom grow operation. At this time, three identical sensor units are deployed, each transmitting wirelessly over LoRa to a central gateway. The sensor nodes can be run on battery power and need to be moved outdoors for recalibration, or while determining optimal placement. 
+This project monitors CO₂ levels in the incubation and fruiting areas of a mushroom grow operation. At this time, three identical sensor units are deployed (though only two are documented below), each transmitting wirelessly over LoRa to a central gateway. The sensor nodes can be run on battery power and need to be moved outdoors for recalibration, or while determining optimal placement. 
 
 
 **Why LoRa instead of WiFi?**  
 
-WiFi has it's challanges in the twin metal shipping containers in this mushroom grow space. I want to test the reliability and range of LoRa (not LoRaWAN) in this situation and hopefully be ready for future growth. Ultimately, I wish to expand this method to more remote areas of the farm as well. **Note:** The LilyGo T3 LoRa32 running OpenMQTTGateway does require WiFi to send the data recieved to the MQTT broker.
+WiFi has its challanges in the twin metal shipping containers in this mushroom grow space. I want to test the reliability and range of LoRa (not LoRaWAN) in this situation and hopefully be ready for future growth. Ultimately, I wish to expand this method to more remote areas of the farm as well. **Note:** The LilyGo T3 LoRa32 running OpenMQTTGateway does require WiFi to send the data recieved to the MQTT broker.
 
 **Why SCD41 instead of the Atlas Scientific EZO-CO₂?**  
 
@@ -83,12 +83,33 @@ The EZO sensors require lab-grade reference gases for recalibration and proved u
 
 The sensor unit is split into two separate 3D-printed boxes connected by a short cable (under 1 meter):
 
-- **Sensor box** — contains the SCD41 only, with a replaceable hydrophobic PTFE membrane filter over the sensor opening. This box can be positioned for optimal airflow independent of power constraints.
-- **Main box** — contains the XIAO ESP32S3 + Wio-SX1262, MAX17048, and LiPo battery. Houses the waterproof USB-C connector for charging and wired power.
-
 Separating the sensor from the electronics keeps heat from the MCU and LoRa module away from the SCD41, which improves temperature reading accuracy.
 
-> 📸 *Enclosure photos and 3D print files coming soon*
+<img src=Attachments/Photos/Both_Comp.jpeg width="50%"/>
+
+
+
+- **Main box** — contains the XIAO ESP32S3 + Wio-SX1262, MAX17048, and LiPo battery(under PCB). Houses the waterproof USB-C connector for charging and wired power as well as a button to disconnect battery power if total shutdown is desired.
+
+<img src=Attachments/Photos/XiAO_Top.jpeg width="50%"/>
+
+(Threaded inserts and lid not shown)
+
+
+- **Sensor box** — contains the SCD41 only, with a replaceable hydrophobic PTFE membrane filter over the sensor openings. This box can be positioned for optimal airflow independent of power constraints.
+
+The design of the SCD enclosure takes into account the air flow recommendations from the Sensirion Datasheet.
+<img src=Attachments/Photos/SCD_AirFlow.png width="50%"/>
+
+The foam around the sensor improves the seal (below).
+
+<img src=Attachments/Photos/SCD_Enc1.jpeg width="50%"/>
+
+The cable enters from the top to allow hanging with the sensor facing down. The cable grommet shown is 3D printed out of TPU to keep out moisture. Stick-on PTFE membranes are to be placed over vent holes on sides and bottom and replaced as needed.
+<img src=Attachments/Photos/SCD_Enc2.jpeg width="50%"/>
+
+(Threaded inserts and end-cap not shown)
+
 
 ### Pin Mapping
 
@@ -126,7 +147,13 @@ For other uses, board has additional access to XIAO GPIO pins if needed. Resisto
 - [VSCode](https://code.visualstudio.com/) with [PlatformIO extension](https://platformio.org/)
 - A USB-C cable for initial flashing
 
+### Repository Files
+- main.cpp — Main firmware source
+- platformio.ini — PlatformIO build configuration
+
+
 ### platformio.ini
+
 
 ```ini
 [env:seeed_xiao_esp32s3]
@@ -277,6 +304,16 @@ Wrapped payload format required by OMG:
 
 ## Node-RED Dashboard
 
+<img src=Attachments/Photos/NR_Sensor.jpg width="70%"/>
+(LoRa_XIAO.json)
+<img src=Attachments/Photos/NR_FRC_Set.jpg width="70%"/>
+(SCD_FRC.json)
+<img src=Attachments/Photos/NR_SCD41_Calibration.jpg width="70%"/>
+(SCD_Temp_Alt.json)
+
+
+**JSON files for all three elements located in "NodeRED" folder** - Import via Node-RED menu → Import → select file
+
 **Platform:** Node-RED v3.1.7 with FlowFuse Dashboard 2.0
 
 ### Features
@@ -287,10 +324,7 @@ Wrapped payload format required by OMG:
 - **FRC calibration controls** — countdown timer, configurable target ppm
 - **Multi-send reliability** — FRC command sent 3–4 times at 2-second intervals to account for LoRa packet loss
 - **Watchdog status indicator** — LED goes yellow at 5 min silence, red at 10 min, with "Last seen X min ago" text
-
-> 📸 *Dashboard screenshot coming soon*
-
-> 📄 *Node-RED flow export (.json) coming soon*
+- **Temperature and Altitude calibration** - Converted for "F" and feet. Separate group as likely only done once
 
 ---
 
@@ -350,10 +384,11 @@ Signs calibration may have drifted:
 
 | Condition | Expected CO₂ |
 |---|---|
-| Outdoor air (typical) | 415–425 ppm |
+| Outdoor air (typical) | 425–435 ppm |
 | Indoor office/home | 600–1000 ppm |
-| Mushroom incubation room | 1000–5000+ ppm |
+| Mushroom incubation room | 10000–20000+ ppm* |
 | Mushroom fruiting room | 500–1500 ppm (species-dependent) |
+*Values commonly found on Internet - unverified.
 
 ---
 
@@ -386,5 +421,5 @@ Both XIAO units occasionally dropped off at the same time. Monitored via a Grafa
 
 ---
 
-*Documentation by Bill Juv — part of the Nevada mushroom grow monitoring project.*  
+*Documentation by BillJuv — part of the Nevada mushroom grow monitoring project.*  
 *Public project documentation: [billjuv.github.io](https://billjuv.github.io)*

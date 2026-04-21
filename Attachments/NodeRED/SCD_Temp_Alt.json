@@ -1,0 +1,900 @@
+[
+    {
+        "id": "da2f71dceb86776b",
+        "type": "group",
+        "z": "b7d254abc3d5f1ce",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "baf977cfa7990d09",
+            "1df9b6497f12f1d1",
+            "8225bc65abd5b410",
+            "0afaa2d8fe787c6a",
+            "bdd9108033b026a4",
+            "26c6e8fda19b69a8",
+            "9f5c40d5d8d8f0b0",
+            "d0a1eae45478e138",
+            "da85ddfacf230741",
+            "51fa391b322cc098",
+            "debe1e33821728f1",
+            "61319f845ebb4dfb",
+            "fd5c23278ae5d6cb",
+            "84936bc1549a88d8",
+            "2dabded3534e6269",
+            "c9639853b1b3e138",
+            "2c5103da2e11c608",
+            "9b474177a8ea9541",
+            "42edd2fc9d9ef150",
+            "537a021747e9d068",
+            "51f09c70508ea361",
+            "c112e8bff73d8cc9",
+            "efd9ede6e61a81fb",
+            "3e53f9e07693a71c",
+            "3acca4c744c3b1b4",
+            "659071664f273f8a",
+            "45f930bed4009981",
+            "604af3c0bddc07ba",
+            "8f823c09efd9dce4",
+            "27c98e64a93886f4",
+            "5e86fc1bd393040c",
+            "04a7f21a22bfd216"
+        ],
+        "x": 154,
+        "y": 3399,
+        "w": 912,
+        "h": 1122
+    },
+    {
+        "id": "baf977cfa7990d09",
+        "type": "ui-dropdown",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "group": "cal_ui_group",
+        "name": "Device Selector",
+        "label": "Select Sensor",
+        "tooltip": "",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "passthru": true,
+        "multiple": false,
+        "chips": false,
+        "clearable": false,
+        "options": [
+            {
+                "label": "XIAO 1 - Fruiting Front",
+                "value": "LoRa_XIAO_CO2_1_D893A8D4DB1C",
+                "type": "str"
+            },
+            {
+                "label": "XIAO 2 - Fruiting Rear",
+                "value": "LoRa_XIAO_CO2_2_B893A8D4DB1C",
+                "type": "str"
+            },
+            {
+                "label": "XIAO 3 - Incubation",
+                "value": "LoRa_XIAO_CO2_3_BC1BA7D4DB1C",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "device",
+        "topicType": "str",
+        "className": "",
+        "typeIsComboBox": true,
+        "msgTrigger": "onChange",
+        "x": 360,
+        "y": 3500,
+        "wires": [
+            [
+                "1df9b6497f12f1d1"
+            ]
+        ]
+    },
+    {
+        "id": "1df9b6497f12f1d1",
+        "type": "function",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "Save Selected Device",
+        "func": "flow.set('cal_device', msg.payload);\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 3500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8225bc65abd5b410",
+        "type": "ui-number-input",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "group": "cal_ui_group",
+        "name": "Temp Offset Input",
+        "label": "Temp Offset (°F)",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "topic": "temp_offset_f",
+        "topicType": "str",
+        "min": 0,
+        "max": 36,
+        "step": 0.5,
+        "tooltip": "Enter degrees °F your sensor reads TOO HIGH. SCD41 subtracts this amount. Always positive (0 = no offset).",
+        "delay": "0",
+        "passthru": true,
+        "sendOnDelay": true,
+        "sendOnBlur": true,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": false,
+        "icon": "",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside",
+        "spinner": "default",
+        "x": 360,
+        "y": 3560,
+        "wires": [
+            [
+                "0afaa2d8fe787c6a"
+            ]
+        ]
+    },
+    {
+        "id": "0afaa2d8fe787c6a",
+        "type": "function",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "Save Temp Offset",
+        "func": "flow.set('cal_temp_f', msg.payload);\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 3560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bdd9108033b026a4",
+        "type": "ui-button",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "group": "cal_ui_group",
+        "name": "Set Temp Offset",
+        "label": "Set Temp Offset",
+        "order": 3,
+        "width": "2",
+        "height": "1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "set_temp",
+        "payloadType": "str",
+        "topic": "action",
+        "topicType": "str",
+        "x": 360,
+        "y": 3620,
+        "wires": [
+            [
+                "debe1e33821728f1"
+            ]
+        ]
+    },
+    {
+        "id": "26c6e8fda19b69a8",
+        "type": "ui-button",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "group": "cal_ui_group",
+        "name": "Get Temp Offset",
+        "label": "Get Temp Offset",
+        "order": 4,
+        "width": "2",
+        "height": "1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "get_temp",
+        "payloadType": "str",
+        "topic": "action",
+        "topicType": "str",
+        "x": 360,
+        "y": 3680,
+        "wires": [
+            [
+                "debe1e33821728f1"
+            ]
+        ]
+    },
+    {
+        "id": "9f5c40d5d8d8f0b0",
+        "type": "ui-number-input",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "group": "cal_ui_group",
+        "name": "Altitude Input",
+        "label": "Altitude (feet)",
+        "order": 5,
+        "width": "3",
+        "height": "1",
+        "topic": "altitude_ft",
+        "topicType": "str",
+        "min": 0,
+        "max": 15000,
+        "step": 10,
+        "tooltip": "Longmont CO ≈ 5060 ft  |  Moapa NV ≈ 1560 ft",
+        "delay": "0",
+        "passthru": true,
+        "sendOnDelay": true,
+        "sendOnBlur": true,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": false,
+        "icon": "",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside",
+        "spinner": "default",
+        "x": 360,
+        "y": 3740,
+        "wires": [
+            [
+                "d0a1eae45478e138"
+            ]
+        ]
+    },
+    {
+        "id": "d0a1eae45478e138",
+        "type": "function",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "Save Altitude",
+        "func": "flow.set('cal_alt_ft', msg.payload);\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 3760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "da85ddfacf230741",
+        "type": "ui-button",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "group": "cal_ui_group",
+        "name": "Set Altitude",
+        "label": "Set Altitude",
+        "order": 6,
+        "width": "2",
+        "height": "1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "set_alt",
+        "payloadType": "str",
+        "topic": "action",
+        "topicType": "str",
+        "x": 360,
+        "y": 3800,
+        "wires": [
+            [
+                "debe1e33821728f1"
+            ]
+        ]
+    },
+    {
+        "id": "51fa391b322cc098",
+        "type": "ui-button",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "group": "cal_ui_group",
+        "name": "Get Altitude",
+        "label": "Get Altitude",
+        "order": 7,
+        "width": "2",
+        "height": "1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "get_alt",
+        "payloadType": "str",
+        "topic": "action",
+        "topicType": "str",
+        "x": 360,
+        "y": 3860,
+        "wires": [
+            [
+                "debe1e33821728f1"
+            ]
+        ]
+    },
+    {
+        "id": "debe1e33821728f1",
+        "type": "function",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "Build Calibration Command",
+        "func": "const action     = msg.payload;\nconst device     = flow.get('cal_device');\nconst tempF      = flow.get('cal_temp_f') || 0;\nconst altFt      = flow.get('cal_alt_ft') || 1344;\n\nif (!device) {\n    node.warn('No device selected');\n    return null;\n}\n\nlet command = { target: device };\n\nif (action === 'set_temp') {\n    // SCD41 offset is always positive - it always subtracts this from readings\n    // Convert °F difference to °C difference (divide by 1.8, NOT subtract 32)\n    const absF = Math.abs(parseFloat(tempF) || 0);\n    const tempC = parseFloat((absF / 1.8).toFixed(2));\n    command.temp_offset = tempC;\n    node.status({ fill:'blue', shape:'dot',\n        text: `Set temp offset ${absF}°F (${tempC}°C) → ${device}` });\n\n} else if (action === 'get_temp') {\n    command.get_temp_offset = true;\n    node.status({ fill:'blue', shape:'dot',\n        text: `Get temp offset ← ${device}` });\n\n} else if (action === 'set_alt') {\n    // Convert feet to meters\n    const altM = Math.round(altFt / 3.28084);\n    command.altitude = altM;\n    node.status({ fill:'blue', shape:'dot',\n        text: `Set altitude ${altFt}ft (${altM}m) → ${device}` });\n\n} else if (action === 'get_alt') {\n    command.get_altitude = true;\n    node.status({ fill:'blue', shape:'dot',\n        text: `Get altitude ← ${device}` });\n}\n\nmsg.payload = JSON.stringify({\n    message: JSON.stringify(command)\n});\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 3700,
+        "wires": [
+            [
+                "61319f845ebb4dfb",
+                "fd5c23278ae5d6cb"
+            ]
+        ]
+    },
+    {
+        "id": "61319f845ebb4dfb",
+        "type": "mqtt out",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "Send to LoRa Gateway",
+        "topic": "MushLoRa/OMG_LORA_MOAPA/commands/MQTTtoLORA",
+        "qos": "0",
+        "retain": "false",
+        "broker": "a2cc319da1341e36",
+        "x": 890,
+        "y": 3660,
+        "wires": []
+    },
+    {
+        "id": "fd5c23278ae5d6cb",
+        "type": "debug",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "Cal Command Sent",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 3720,
+        "wires": []
+    },
+    {
+        "id": "84936bc1549a88d8",
+        "type": "mqtt in",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "XIAO_1 cal response - Value",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_1_D893A8D4DB1C/temp_offset_value",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": true,
+        "inputs": 0,
+        "x": 300,
+        "y": 3940,
+        "wires": [
+            [
+                "2c5103da2e11c608"
+            ]
+        ]
+    },
+    {
+        "id": "2dabded3534e6269",
+        "type": "mqtt in",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "XIAO_2 cal response - Value",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_2_B893A8D4DB1C/temp_offset_value",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": true,
+        "inputs": 0,
+        "x": 300,
+        "y": 4040,
+        "wires": [
+            [
+                "2c5103da2e11c608"
+            ]
+        ]
+    },
+    {
+        "id": "c9639853b1b3e138",
+        "type": "mqtt in",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "XIAO_3 cal response - Value",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_3_BC1BA7D4DB1C/temp_offset_value",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": true,
+        "inputs": 0,
+        "x": 300,
+        "y": 4140,
+        "wires": [
+            [
+                "2c5103da2e11c608"
+            ]
+        ]
+    },
+    {
+        "id": "2c5103da2e11c608",
+        "type": "function",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "Format Response for Display",
+        "func": "const parts = msg.topic.split('/');\nconst device = parts[1] || 'unknown';\nconst field = parts[2] || 'unknown';\n\nconst shortName = device.replace('LoRa_XIAO_CO2_', 'XIAO ');\nconst val = parseFloat(msg.payload);\n\nlet display;\nif (field.startsWith('temp_offset')) {\n    const valF = parseFloat((val * 1.8).toFixed(2));\n    display = `${shortName} — ${field}: ${val}°C (${valF}°F)`;\n} else if (field.startsWith('altitude')) {\n    const valFt = Math.round(val * 3.28084);\n    display = `${shortName} — ${field}: ${val}m (${valFt}ft)`;\n} else {\n    display = `${shortName} — ${field}: ${val}`;\n}\n\nmsg.payload = display;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 4020,
+        "wires": [
+            [
+                "9b474177a8ea9541",
+                "42edd2fc9d9ef150",
+                "5e86fc1bd393040c"
+            ]
+        ]
+    },
+    {
+        "id": "9b474177a8ea9541",
+        "type": "ui-text",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "group": "cal_ui_group",
+        "order": 8,
+        "width": "6",
+        "height": "1",
+        "name": "Cal Response Display",
+        "label": "Last Response",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "style": false,
+        "className": "",
+        "x": 930,
+        "y": 4000,
+        "wires": []
+    },
+    {
+        "id": "42edd2fc9d9ef150",
+        "type": "debug",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "Cal Response",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 4060,
+        "wires": []
+    },
+    {
+        "id": "537a021747e9d068",
+        "type": "mqtt in",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "XIAO_1 cal response - Current",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_1_D893A8D4DB1C/temp_offset_current",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": true,
+        "inputs": 0,
+        "x": 300,
+        "y": 3980,
+        "wires": [
+            [
+                "2c5103da2e11c608"
+            ]
+        ]
+    },
+    {
+        "id": "51f09c70508ea361",
+        "type": "mqtt in",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "XIAO_2 cal response - Current",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_2_B893A8D4DB1C/temp_offset_current",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": true,
+        "inputs": 0,
+        "x": 300,
+        "y": 4080,
+        "wires": [
+            [
+                "2c5103da2e11c608"
+            ]
+        ]
+    },
+    {
+        "id": "c112e8bff73d8cc9",
+        "type": "mqtt in",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "XIAO_3 cal response - Current",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_3_BC1BA7D4DB1C/temp_offset_current",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": true,
+        "inputs": 0,
+        "x": 300,
+        "y": 4180,
+        "wires": [
+            [
+                "2c5103da2e11c608"
+            ]
+        ]
+    },
+    {
+        "id": "efd9ede6e61a81fb",
+        "type": "mqtt in",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_1_D893A8D4DB1C/altitude_value",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": true,
+        "inputs": 0,
+        "x": 420,
+        "y": 4240,
+        "wires": [
+            [
+                "8f823c09efd9dce4"
+            ]
+        ]
+    },
+    {
+        "id": "3e53f9e07693a71c",
+        "type": "mqtt in",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_2_B893A8D4DB1C/altitude_value",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": true,
+        "inputs": 0,
+        "x": 420,
+        "y": 4340,
+        "wires": [
+            [
+                "8f823c09efd9dce4"
+            ]
+        ]
+    },
+    {
+        "id": "3acca4c744c3b1b4",
+        "type": "mqtt in",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_3_BC1BA7D4DB1C/altitude_value",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": true,
+        "inputs": 0,
+        "x": 430,
+        "y": 4440,
+        "wires": [
+            [
+                "8f823c09efd9dce4"
+            ]
+        ]
+    },
+    {
+        "id": "659071664f273f8a",
+        "type": "mqtt in",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_1_D893A8D4DB1C/altitude_current",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": true,
+        "inputs": 0,
+        "x": 430,
+        "y": 4280,
+        "wires": [
+            [
+                "8f823c09efd9dce4"
+            ]
+        ]
+    },
+    {
+        "id": "45f930bed4009981",
+        "type": "mqtt in",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_2_B893A8D4DB1C/altitude_current",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": true,
+        "inputs": 0,
+        "x": 430,
+        "y": 4380,
+        "wires": [
+            [
+                "8f823c09efd9dce4"
+            ]
+        ]
+    },
+    {
+        "id": "604af3c0bddc07ba",
+        "type": "mqtt in",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_3_BC1BA7D4DB1C/altitude_current",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": true,
+        "inputs": 0,
+        "x": 430,
+        "y": 4480,
+        "wires": [
+            [
+                "8f823c09efd9dce4"
+            ]
+        ]
+    },
+    {
+        "id": "8f823c09efd9dce4",
+        "type": "link out",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "SCD41 Altitude",
+        "mode": "link",
+        "links": [
+            "27c98e64a93886f4"
+        ],
+        "x": 805,
+        "y": 4360,
+        "wires": []
+    },
+    {
+        "id": "27c98e64a93886f4",
+        "type": "link in",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "SCD41 Setting Display",
+        "links": [
+            "8f823c09efd9dce4"
+        ],
+        "x": 585,
+        "y": 4100,
+        "wires": [
+            [
+                "2c5103da2e11c608"
+            ]
+        ]
+    },
+    {
+        "id": "5e86fc1bd393040c",
+        "type": "debug",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "Alttitude Response",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 4100,
+        "wires": []
+    },
+    {
+        "id": "04a7f21a22bfd216",
+        "type": "comment",
+        "z": "b7d254abc3d5f1ce",
+        "g": "da2f71dceb86776b",
+        "name": "SCD41 Temp and Altitude Calibration",
+        "info": "",
+        "x": 430,
+        "y": 3440,
+        "wires": []
+    },
+    {
+        "id": "cal_ui_group",
+        "type": "ui-group",
+        "name": "SCD41 Calibration",
+        "page": "56826214d9b731b9",
+        "width": "6",
+        "height": "1",
+        "order": 6,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "a2cc319da1341e36",
+        "type": "mqtt-broker",
+        "name": "MushRmPi.local",
+        "broker": "mushrmpi.local",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "56826214d9b731b9",
+        "type": "ui-page",
+        "name": "Sensor Calibration",
+        "ui": "b19902285c24f724",
+        "path": "/page8",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "cbb09358a5c9450b",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "6"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 2,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "b19902285c24f724",
+        "type": "ui-base",
+        "name": "MushRmPi Dashboard 2.0",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": true,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": false,
+        "notificationDisplayTime": "5",
+        "showDisconnectNotification": false,
+        "allowInstall": true
+    },
+    {
+        "id": "cbb09358a5c9450b",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094ce",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "pagePadding": "4px",
+            "groupGap": "8px",
+            "groupBorderRadius": "2px",
+            "widgetGap": "12px",
+            "density": "default"
+        }
+    },
+    {
+        "id": "ad79e27465a24070",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "@flowfuse/node-red-dashboard": "1.30.2"
+        }
+    }
+]

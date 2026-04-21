@@ -1,0 +1,1408 @@
+[
+    {
+        "id": "8156163b104d137d",
+        "type": "ui-chart",
+        "z": "951a1b4207d9f883",
+        "g": "fcb2047647c6547b",
+        "group": "349197be4230d395",
+        "name": "",
+        "label": "CO2 Compare",
+        "order": 1,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "ppm",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "false",
+        "pointRadius": "1",
+        "showLegend": true,
+        "removeOlder": "12",
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0433ff",
+            "#ff2600",
+            "#00f900",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": 6,
+        "height": "4",
+        "className": "",
+        "interpolation": "linear",
+        "x": 1320,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4b387a9fc9d69942",
+        "type": "ui-chart",
+        "z": "951a1b4207d9f883",
+        "g": "fcb2047647c6547b",
+        "group": "349197be4230d395",
+        "name": "",
+        "label": "Battery % - LoRa/SCD41",
+        "order": 2,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "ppm",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "false",
+        "pointRadius": "1",
+        "showLegend": true,
+        "removeOlder": "12",
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0433ff",
+            "#ff2600",
+            "#00f900",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": 6,
+        "height": "4",
+        "className": "",
+        "interpolation": "linear",
+        "x": 1350,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3ca2c29793c003e9",
+        "type": "group",
+        "z": "951a1b4207d9f883",
+        "g": "fcb2047647c6547b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "e733e163e03db28d",
+            "78d217902336574b",
+            "e910e12817b89fc9",
+            "aca7fadcb0a972df",
+            "dd76c6b0bb21ac91",
+            "49bd0c64980f5467",
+            "396297904794d6e1",
+            "b284d38323afb804",
+            "8042344b726bdbcf",
+            "e0a26e0a4e03a8a4",
+            "455b1ee795a80e6d",
+            "42e3dd95801a253a",
+            "964d815d26dbd2b3",
+            "f2f40bdb9235544a",
+            "2a2d9b6ff53418c9",
+            "af291d7889b236e3",
+            "aa4f95679425853b",
+            "783b37efb5aa6df2",
+            "34b4103718a2f079",
+            "d7b8a7b9adc035b9",
+            "d253d03c973f98e8",
+            "fabc4cbbd0b850f6",
+            "44458348733eb12c",
+            "b771be0b27d6e84b",
+            "7af99e0c0d3781f0",
+            "e2471374788f159a",
+            "17d1a37234d1f9f0",
+            "8dbf9cd739a9ca5d",
+            "f77d08bdde98d852",
+            "cb90406ff3d9108b",
+            "c183d6a7de4d518e",
+            "22e78da13033f58e",
+            "88cc97013ca2f7b7",
+            "b33409a796a1300c",
+            "7a8809a3810fede8",
+            "batt_func_xiao1",
+            "batt_mqtt_xiao1"
+        ],
+        "x": 48,
+        "y": -7,
+        "w": 928,
+        "h": 1168
+    },
+    {
+        "id": "e733e163e03db28d",
+        "type": "debug",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "BattVolt",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "78d217902336574b",
+        "type": "mqtt in",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_1_D893A8D4DB1C/batt_volt",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 310,
+        "y": 780,
+        "wires": [
+            [
+                "e733e163e03db28d",
+                "42e3dd95801a253a"
+            ]
+        ]
+    },
+    {
+        "id": "e910e12817b89fc9",
+        "type": "ui-text",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "group": "10b2d55f217821a7",
+        "order": 12,
+        "width": "3",
+        "height": "1",
+        "name": "XIAO_1 - BattVolt ",
+        "label": "Battery Voltage",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 730,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "aca7fadcb0a972df",
+        "type": "mqtt in",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_1_D893A8D4DB1C/batt_percent",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 320,
+        "y": 860,
+        "wires": [
+            [
+                "455b1ee795a80e6d"
+            ]
+        ]
+    },
+    {
+        "id": "dd76c6b0bb21ac91",
+        "type": "ui-text",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "group": "10b2d55f217821a7",
+        "order": 13,
+        "width": "3",
+        "height": "1",
+        "name": "XIAO_1 - Batt% ",
+        "label": "Battery %",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 720,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "49bd0c64980f5467",
+        "type": "debug",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "Batt_%",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "396297904794d6e1",
+        "type": "ui-led",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "XIAO_1-  BattStatus",
+        "group": "10b2d55f217821a7",
+        "order": 10,
+        "width": "1",
+        "height": "1",
+        "label": "",
+        "labelPlacement": "right",
+        "labelAlignment": "center",
+        "states": [
+            {
+                "value": "CRITICAL",
+                "valueType": "str",
+                "color": "#ff0000"
+            },
+            {
+                "value": "OK",
+                "valueType": "str",
+                "color": "#00ff00"
+            },
+            {
+                "value": "WARNING",
+                "valueType": "str",
+                "color": "#fffb00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showBorder": false,
+        "showGlow": false,
+        "x": 730,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "b284d38323afb804",
+        "type": "debug",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "Batt_crate",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "8042344b726bdbcf",
+        "type": "mqtt in",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_1_D893A8D4DB1C/batt_crate",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 310,
+        "y": 960,
+        "wires": [
+            [
+                "b284d38323afb804",
+                "964d815d26dbd2b3"
+            ]
+        ]
+    },
+    {
+        "id": "e0a26e0a4e03a8a4",
+        "type": "ui-text",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "group": "10b2d55f217821a7",
+        "order": 11,
+        "width": "5",
+        "height": "1",
+        "name": "XIAO_1 - BattChgRate",
+        "label": "Status/Charge Rate (%/hr.)",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 740,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "455b1ee795a80e6d",
+        "type": "change",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "round to 2",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$round(payload, 2)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 900,
+        "wires": [
+            [
+                "dd76c6b0bb21ac91",
+                "b33409a796a1300c"
+            ]
+        ]
+    },
+    {
+        "id": "42e3dd95801a253a",
+        "type": "change",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "round to 2",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$round(payload, 2)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 820,
+        "wires": [
+            [
+                "e910e12817b89fc9"
+            ]
+        ]
+    },
+    {
+        "id": "964d815d26dbd2b3",
+        "type": "change",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "round to 2",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$round(payload, 2)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 1020,
+        "wires": [
+            [
+                "e0a26e0a4e03a8a4"
+            ]
+        ]
+    },
+    {
+        "id": "f2f40bdb9235544a",
+        "type": "group",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "78acaaefecefbe82",
+            "64f0e9b892738daa",
+            "c8c1437aa0948205",
+            "8dcef9b38c01c367",
+            "0cf2be390c5317a5",
+            "e36b66aef683079d",
+            "f980c2af0be3a05b",
+            "9aaefc34caa6adfb"
+        ],
+        "x": 74,
+        "y": 19,
+        "w": 872,
+        "h": 242
+    },
+    {
+        "id": "78acaaefecefbe82",
+        "type": "mqtt in",
+        "z": "951a1b4207d9f883",
+        "g": "f2f40bdb9235544a",
+        "name": "from OMG - LORAtoMQTT",
+        "topic": "MushLoRa/OMG_LORA_MOAPA/LORAtoMQTT",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 210,
+        "y": 140,
+        "wires": [
+            [
+                "c8c1437aa0948205",
+                "8dcef9b38c01c367"
+            ]
+        ]
+    },
+    {
+        "id": "64f0e9b892738daa",
+        "type": "debug",
+        "z": "951a1b4207d9f883",
+        "g": "f2f40bdb9235544a",
+        "name": "Split",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "c8c1437aa0948205",
+        "type": "debug",
+        "z": "951a1b4207d9f883",
+        "g": "f2f40bdb9235544a",
+        "name": "Split",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "8dcef9b38c01c367",
+        "type": "function",
+        "z": "951a1b4207d9f883",
+        "g": "f2f40bdb9235544a",
+        "name": "Seperate out devices",
+        "func": "// --- Multi-sensor safe Function node with InfluxDB write ---\n\nlet payload = msg.payload;\n\nif (Buffer.isBuffer(payload)) {\n    payload = payload.toString('utf8');\n}\n\nif (typeof payload === \"string\") {\n    try {\n        payload = JSON.parse(payload);\n    } catch (err) {\n        node.error(\"Invalid JSON payload\", msg);\n        return null;\n    }\n}\n\nconst device = payload.value;\nif (!device) return null;\n\n// Fields to ignore (non-metric)\nconst ignore = [\"value\", \"snr\", \"pferror\", \"packetSize\", \"batt_status\"];\n\n// Valid measurement names: letters, numbers, underscores only\nconst validName = /^[a-zA-Z_][a-zA-Z0-9_]*$/;\n\n// Valid device names: same rules\nconst validDevice = /^[a-zA-Z0-9_-]+$/;\n\nif (!validDevice.test(device)) {\n    node.warn(`Skipping bad device name: ${device}`);\n    return null;\n}\n\nconst messages = [];\n\nfor (const [key, val] of Object.entries(payload)) {\n    if (ignore.includes(key)) continue;\n    if (!validName.test(key)) {\n        node.warn(`Skipping bad field name: ${key}`);\n        continue;\n    }\n\n    const numVal = parseFloat(val);\n    if (isNaN(numVal)) {\n        node.warn(`Skipping non-numeric value for ${key}: ${val}`);\n        continue;\n    }\n\n    // Message 1: to MQTT (existing behavior)\n    // Message 2: to InfluxDB HTTP write\n    messages.push([\n        {\n            topic: `LoRa_NodeRed/${device}/${key}`,\n            payload: val,\n            retain: true\n        },\n        {\n            payload: `${key},device=${device} value=${numVal}`,\n            headers: { \"Content-Type\": \"text/plain\" }\n        }\n    ]);\n}\n\n// Send all validated messages\nfor (const [mqttMsg, influxMsg] of messages) {\n    node.send([mqttMsg, influxMsg]);\n}\n\nreturn null;",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 140,
+        "wires": [
+            [
+                "0cf2be390c5317a5",
+                "64f0e9b892738daa"
+            ],
+            [
+                "f980c2af0be3a05b"
+            ]
+        ]
+    },
+    {
+        "id": "0cf2be390c5317a5",
+        "type": "mqtt out",
+        "z": "951a1b4207d9f883",
+        "g": "f2f40bdb9235544a",
+        "name": "To LoRa_NodeRed",
+        "topic": "",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "a2cc319da1341e36",
+        "x": 790,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "e36b66aef683079d",
+        "type": "comment",
+        "z": "951a1b4207d9f883",
+        "g": "f2f40bdb9235544a",
+        "name": "Moves multiple sensors to split MQTT topics",
+        "info": "",
+        "x": 270,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "f980c2af0be3a05b",
+        "type": "http request",
+        "z": "951a1b4207d9f883",
+        "g": "f2f40bdb9235544a",
+        "name": "http request-LoRa data to InfluxDB",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://localhost:8086/write?db=mushroom_data",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 760,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9aaefc34caa6adfb",
+        "type": "influxdb out",
+        "z": "951a1b4207d9f883",
+        "g": "f2f40bdb9235544a",
+        "influxdb": "e5d695bf95ae6c6c",
+        "name": "(USE HTTP Request instead of Influx Out)",
+        "measurement": "",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 760,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "e5d695bf95ae6c6c",
+        "type": "influxdb",
+        "hostname": "MushRmPi.local",
+        "port": 8086,
+        "protocol": "http",
+        "database": "mushroom_data",
+        "name": "InfluxDB 1.x - mushroom_data",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "2a2d9b6ff53418c9",
+        "type": "ui-text",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "group": "10b2d55f217821a7",
+        "order": 5,
+        "width": "3",
+        "height": "2",
+        "name": "XIAO_1 - RSSI ",
+        "label": "RSSI",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 720,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "af291d7889b236e3",
+        "type": "change",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "Set LoRa CO2 Payload/Topic",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Fruiting Front (1)",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 360,
+        "wires": [
+            [
+                "44458348733eb12c"
+            ]
+        ]
+    },
+    {
+        "id": "aa4f95679425853b",
+        "type": "change",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "C to F",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$round((payload*9/5+32), 2)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 560,
+        "wires": [
+            [
+                "34b4103718a2f079",
+                "fabc4cbbd0b850f6"
+            ]
+        ]
+    },
+    {
+        "id": "783b37efb5aa6df2",
+        "type": "debug",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "LoRa-SCD41-1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "34b4103718a2f079",
+        "type": "debug",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "TempF",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "d7b8a7b9adc035b9",
+        "type": "ui-gauge",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "XIAO_1 - CO2  ",
+        "group": "10b2d55f217821a7",
+        "order": 3,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": "2",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "CO₂",
+        "alwaysShowTitle": false,
+        "units": "ppm",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#f5ec00",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "1000",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 720,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d253d03c973f98e8",
+        "type": "ui-gauge",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "XIAO_1 - Humidity ",
+        "group": "10b2d55f217821a7",
+        "order": 4,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": "2",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Humidity",
+        "alwaysShowTitle": false,
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#00f5f5",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 730,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fabc4cbbd0b850f6",
+        "type": "ui-gauge",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "XIAO_1 - Temp ",
+        "group": "10b2d55f217821a7",
+        "order": 2,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": "2",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Temp",
+        "alwaysShowTitle": false,
+        "units": "F",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "70",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "80",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 720,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "44458348733eb12c",
+        "type": "link out",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "XIAO_1 - CO2 payload",
+        "mode": "link",
+        "links": [
+            "56764535b1f5a9b9",
+            "f65d4eec90467284",
+            "c9a897b4d8e9eb2a"
+        ],
+        "x": 935,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "b771be0b27d6e84b",
+        "type": "mqtt in",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_1_D893A8D4DB1C/co2",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 290,
+        "y": 400,
+        "wires": [
+            [
+                "d7b8a7b9adc035b9",
+                "af291d7889b236e3",
+                "783b37efb5aa6df2",
+                "cb90406ff3d9108b"
+            ]
+        ]
+    },
+    {
+        "id": "7af99e0c0d3781f0",
+        "type": "debug",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "Hum-LoRa",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "e2471374788f159a",
+        "type": "mqtt in",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_1_D893A8D4DB1C/hum",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 290,
+        "y": 480,
+        "wires": [
+            [
+                "7af99e0c0d3781f0",
+                "d253d03c973f98e8"
+            ]
+        ]
+    },
+    {
+        "id": "17d1a37234d1f9f0",
+        "type": "mqtt in",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_1_D893A8D4DB1C/temp",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 300,
+        "y": 560,
+        "wires": [
+            [
+                "aa4f95679425853b"
+            ]
+        ]
+    },
+    {
+        "id": "8dbf9cd739a9ca5d",
+        "type": "mqtt in",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_1_D893A8D4DB1C/rssi",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 290,
+        "y": 640,
+        "wires": [
+            [
+                "f77d08bdde98d852",
+                "2a2d9b6ff53418c9"
+            ]
+        ]
+    },
+    {
+        "id": "f77d08bdde98d852",
+        "type": "debug",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "RSSI",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "cb90406ff3d9108b",
+        "type": "function",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "Device ID",
+        "func": "// Device ID (hard-coded here because this MQTT topic is device-specific)\nlet device = \"LoRa_XIAO_CO2_1_D893A8D4DB1C\";\n\n// Store current CO2 per device (file context)\nflow.set(`current_co2.${device}`, msg.payload, \"file\");\n\n// Keep topic for charting\nmsg.topic = device;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c183d6a7de4d518e",
+        "type": "comment",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "LoRa_XIAO_CO2_1_D893A8D4DB1C",
+        "info": "",
+        "x": 330,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "22e78da13033f58e",
+        "type": "mqtt in",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_1_D893A8D4DB1C/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 290,
+        "y": 720,
+        "wires": [
+            [
+                "88cc97013ca2f7b7"
+            ]
+        ]
+    },
+    {
+        "id": "88cc97013ca2f7b7",
+        "type": "debug",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "Multi",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "b33409a796a1300c",
+        "type": "change",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "Set LoRa Battery Payload/Topic",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Fruiting Front (1)",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 770,
+        "y": 860,
+        "wires": [
+            [
+                "4b387a9fc9d69942"
+            ]
+        ]
+    },
+    {
+        "id": "7a8809a3810fede8",
+        "type": "ui-text",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "group": "10b2d55f217821a7",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "name": "XIAO 1 - Sensor: Fruiting Front CO₂",
+        "label": "Fruiting Front CO₂ - Sensor 1",
+        "format": "SCD41 — XIAO 1",
+        "layout": "row-spread",
+        "style": true,
+        "font": "Arial Black,Arial Black,Gadget,sans-serif",
+        "fontSize": "24",
+        "color": "#0094ce",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 320,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "batt_func_xiao1",
+        "type": "function",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "XIAO_1 Batt LED Status",
+        "func": "const pct = parseFloat(msg.payload);\nif (isNaN(pct)) {\n    msg.payload = \"UNKNOWN\";\n} else if (pct <= 10) {\n    msg.payload = \"CRITICAL\";\n} else if (pct <= 20) {\n    msg.payload = \"WARNING\";\n} else {\n    msg.payload = \"OK\";\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 1080,
+        "wires": [
+            [
+                "396297904794d6e1",
+                "49bd0c64980f5467"
+            ]
+        ]
+    },
+    {
+        "id": "batt_mqtt_xiao1",
+        "type": "mqtt in",
+        "z": "951a1b4207d9f883",
+        "g": "3ca2c29793c003e9",
+        "name": "XIAO_1 batt_percent",
+        "topic": "LoRa_NodeRed/LoRa_XIAO_CO2_1_D893A8D4DB1C/batt_percent",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "a2cc319da1341e36",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 190,
+        "y": 1080,
+        "wires": [
+            [
+                "batt_func_xiao1"
+            ]
+        ]
+    },
+    {
+        "id": "a2cc319da1341e36",
+        "type": "mqtt-broker",
+        "name": "MushRmPi.local",
+        "broker": "mushrmpi.local",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "10b2d55f217821a7",
+        "type": "ui-group",
+        "name": "SCD41 - LoRa XIAO 1",
+        "page": "e9f46447c605b116",
+        "width": "6",
+        "height": "1",
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "e9f46447c605b116",
+        "type": "ui-page",
+        "name": "New ESP32 Box Tests _ Moapa",
+        "ui": "b19902285c24f724",
+        "path": "/page2",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "cbb09358a5c9450b",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "6"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "b19902285c24f724",
+        "type": "ui-base",
+        "name": "MushRmPi Dashboard 2.0",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": true,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": false,
+        "notificationDisplayTime": "5",
+        "showDisconnectNotification": false,
+        "allowInstall": true
+    },
+    {
+        "id": "cbb09358a5c9450b",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094ce",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "pagePadding": "4px",
+            "groupGap": "8px",
+            "groupBorderRadius": "2px",
+            "widgetGap": "12px",
+            "density": "default"
+        }
+    },
+    {
+        "id": "349197be4230d395",
+        "type": "ui-group",
+        "name": "SCD41 - LoRa_Test",
+        "page": "e9f46447c605b116",
+        "width": "6",
+        "height": "1",
+        "order": 4,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "406162985e5442b2",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "@flowfuse/node-red-dashboard": "1.30.2",
+            "@flowfuse/node-red-dashboard-2-ui-led": "1.1.0",
+            "node-red-contrib-influxdb": "0.7.0"
+        }
+    }
+]
