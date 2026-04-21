@@ -2,7 +2,6 @@
 
 A wireless CO₂, temperature, and humidity monitoring system for mushroom grow operations, using LoRa radio to send sensor data to a central MQTT broker — no WiFi required on the sensor node.
 
-> 📸 *Photos coming soon*
 
 ---
 
