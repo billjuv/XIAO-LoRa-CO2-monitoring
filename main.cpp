@@ -12,20 +12,27 @@
 //    - Adafruit MAX17048 LiPo fuel gauge (I2C, shared bus)
 //    - 3.7V LiPo battery
 //
-//  Note: WiFi is intentionally not used in this firmware.
-//  OTA updates over WiFi were attempted but could not be made
-//  to work reliably alongside the LoRa radio on the ESP32S3.
-//  Firmware updates require a USB-C cable connection.
+//  OTA Firmware Updates:
+//    OTA is triggered via a LoRa command from Node-RED — no physical
+//    access to the device is required. Send the following JSON payload
+//    to the OMG gateway MQTT topic:
+//      Topic:   OMGhome/OMG_ESP32_LORA/commands/MQTTtoLORA
+//      Payload: {"message":"{\"target\":\"<device_name>\",\"ota\":true}"}
+//    The device will stop LoRa, connect to WiFi, and open a 3-minute
+//    OTA window. Push firmware via PlatformIO (Upload button). The
+//    device reboots automatically after a successful flash and resumes
+//    normal LoRa operation. WiFi credentials and OTA password are
+//    stored in include/secrets.h (not committed to the repo —
+//    see include/secrets.h.example for the required format).
 //
 //  Before flashing: set DEVICE_BASE_NAME below to a unique name
 //  for each unit (e.g. "LoRa_XIAO1", "LoRa_XIAO2"). The full
 //  6-byte MAC address is appended automatically as a suffix.
 //  ============================================================
-
-//#define DEVICE_BASE_NAME "LoRa_XIAO1"   // <-- CHANGE THIS for each unit
+#define DEVICE_BASE_NAME "LoRa_XIAO1"   // <-- CHANGE THIS for each unit
 //#define DEVICE_BASE_NAME "LoRa_XIAO_CO2_1"
 //#define DEVICE_BASE_NAME "LoRa_XIAO_CO2_2"
-#define DEVICE_BASE_NAME "LoRa_XIAO_CO2_3"
+//#define DEVICE_BASE_NAME "LoRa_XIAO_CO2_3"
 
 #include <Arduino.h>
 #include <Wire.h>
@@ -34,6 +41,10 @@
 #include <RadioLib.h>
 #include <SPI.h>
 #include <Adafruit_MAX1704X.h>
+#include <WiFi.h>
+#include <ArduinoOTA.h>
+#include <ESPmDNS.h>
+#include "secrets.h"
 
 // --- LoRa pins (Seeed XIAO ESP32S3 + Wio-SX1262 B2B Kit) ---
 // Note: These pin numbers are specific to the B2B kit and differ
@@ -49,8 +60,8 @@ Adafruit_MAX17048 maxlipo;
 bool batteryAvailable = false;
 
 // --- Measurement interval ---
-// initially 9 seconds (not 10) to avoid packet collisions between two units
-// transmitting on the same LoRa frequency. Changed to 31 (still odd number)
+// 9 seconds (not 10) to avoid packet collisions between two units
+// transmitting on the same LoRa frequency
 const unsigned long MEAS_INTERVAL_MS = 31000;
 unsigned long lastRead = 0;
 
@@ -103,6 +114,8 @@ void setTxFlag(void) {
     transmittedFlag = true;
     isTransmitting = false;
 }
+
+void startOTAMode();
 
 /* ================= BATTERY FUNCTIONS ================= */
 
@@ -546,6 +559,12 @@ void handleLoRaCommand() {
                 return;
             }
 
+            if (cmd.containsKey("ota")) {
+                Serial.println("✓ OTA mode command received");
+                digitalWrite(LED_GPIO, LOW);
+                startOTAMode();
+                return;
+}
             digitalWrite(LED_GPIO, LOW);
 
         }
@@ -581,19 +600,126 @@ void scanI2C() {
     Serial.println("Scan complete");
 }
 
+/* ================= OTA BOOT WINDOW ================= */
+
+/* ================= LORA-TRIGGERED OTA ================= */
+
+void startOTAMode() {
+    Serial.println("\n--- OTA Mode Triggered via LoRa ---");
+
+    // Send acknowledgment via LoRa before shutting radio down
+    StaticJsonDocument<128> ack;
+    ack["value"]  = device_name;
+    ack["ota"]    = "starting";
+    size_t n = serializeJson(ack, txBuffer);
+    digitalWrite(LED_GPIO, HIGH);
+    radio.transmit(txBuffer, n);
+    digitalWrite(LED_GPIO, LOW);
+    Serial.println("OTA acknowledgment sent via LoRa");
+
+    // Stop LoRa before starting WiFi
+    radio.standby();
+    delay(100);
+    Serial.println("LoRa stopped");
+
+    // Try SSID_1 first, fall back to SSID_2
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(WIFI_SSID_1, WIFI_PASSWORD_1);
+    Serial.printf("Trying %s...\n", WIFI_SSID_1);
+
+    unsigned long wifiStart = millis();
+    while (WiFi.status() != WL_CONNECTED && millis() - wifiStart < 15000) {
+        delay(500);
+        Serial.print(".");
+    }
+
+    if (WiFi.status() != WL_CONNECTED) {
+        Serial.printf("\n%s failed, trying %s...\n", WIFI_SSID_1, WIFI_SSID_2);
+        WiFi.disconnect();
+        delay(500);
+        WiFi.begin(WIFI_SSID_2, WIFI_PASSWORD_2);
+
+        wifiStart = millis();
+        while (WiFi.status() != WL_CONNECTED && millis() - wifiStart < 15000) {
+            delay(500);
+            Serial.print(".");
+        }
+    }
+
+    if (WiFi.status() != WL_CONNECTED) {
+        Serial.println("\nWiFi failed - returning to LoRa mode");
+        WiFi.disconnect(true);
+        WiFi.mode(WIFI_OFF);
+        delay(100);
+        radio.setDio1Action(setRxFlag);
+        radio.startReceive();
+        receivedFlag = false;
+        return;
+    }
+
+    Serial.printf("\nWiFi connected: %s\n", WiFi.localIP().toString().c_str());
+
+    // Start mDNS so hostname works
+    MDNS.begin(device_name.c_str());
+
+    ArduinoOTA.setHostname(device_name.c_str());
+    ArduinoOTA.setPassword(OTA_PASSWORD);
+
+    ArduinoOTA.onStart([]() {
+        Serial.println("OTA update starting...");
+    });
+    ArduinoOTA.onEnd([]() {
+        Serial.println("\nOTA complete - rebooting");
+    });
+    ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
+        Serial.printf("OTA: %u%%\r", (progress / (total / 100)));
+    });
+    ArduinoOTA.onError([](ota_error_t error) {
+        Serial.printf("OTA Error[%u]\n", error);
+        if (error == OTA_AUTH_ERROR)         Serial.println("Auth Failed");
+        else if (error == OTA_BEGIN_ERROR)   Serial.println("Begin Failed");
+        else if (error == OTA_CONNECT_ERROR) Serial.println("Connect Failed");
+        else if (error == OTA_RECEIVE_ERROR) Serial.println("Receive Failed");
+        else if (error == OTA_END_ERROR)     Serial.println("End Failed");
+    });
+
+    ArduinoOTA.begin();
+    Serial.println("OTA ready - waiting 3 minutes...");
+
+    unsigned long otaStart = millis();
+    while (millis() - otaStart < 180000) {
+        ArduinoOTA.handle();
+        delay(10);
+    }
+
+    Serial.println("OTA window closed - returning to LoRa mode");
+    ArduinoOTA.end();
+    MDNS.end();
+    WiFi.disconnect(true);
+    WiFi.mode(WIFI_OFF);
+    delay(100);
+
+    // Restart LoRa
+    radio.setDio1Action(setRxFlag);
+    int rxState = radio.startReceive();
+    if (rxState == RADIOLIB_ERR_NONE) {
+        Serial.println("LoRa RX resumed");
+    } else {
+        Serial.printf("LoRa resume failed, code: %d\n", rxState);
+    }
+    receivedFlag = false;
+}
 /* ================= SETUP ================= */
 
 void setup() {
     Serial.begin(115200);
-    delay(2000);
+delay(2000);
 
-    // Lock CPU to 240MHz — prevents automatic frequency scaling and light sleep
-    // which were found to interfere with RadioLib LoRa interrupt handling
-    // on battery power.
-    setCpuFrequencyMhz(240);
-    Serial.println("CPU locked to 240MHz");
+// Lock CPU to 240MHz
+setCpuFrequencyMhz(240);
+Serial.println("CPU locked to 240MHz");
 
-    // Build unique device name from DEVICE_BASE_NAME + full 6-byte MAC address.
+// Build unique device name from DEVICE_BASE_NAME + full 6-byte MAC address.
     // Using the full MAC (not just last 3 bytes) avoids duplicate names on
     // boards from the same manufacturing batch.
     uint64_t mac = ESP.getEfuseMac();
@@ -608,7 +734,7 @@ void setup() {
     device_name = String(DEVICE_BASE_NAME) + "_" + String(macStr);
     Serial.print("Device name: ");
     Serial.println(device_name);
-
+ 
     Wire.begin();
     Wire.setClock(100000);
     delay(100);
