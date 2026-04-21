@@ -65,7 +65,7 @@ The EZO sensors require lab-grade reference gases for recalibration and proved u
 | Component | Part | Source |
 |---|---|---|
 | MCU + LoRa | Seeed Studio XIAO ESP32S3 + Wio-SX1262 LoRa B2B Kit | Seeed Studio |
-| CO₂/Temp/RH Sensor | Adafruit SCD41 | Adafruit | *[fill in]* |
+| CO₂/Temp/RH Sensor | Adafruit SCD41 | Adafruit |
 | Battery Monitor | Adafruit MAX17048 LiPoly / LiIon Fuel Gauge | Adafruit |
 | Battery | 3.7V / 1800mAh LiPo | Amazon |
 | LoRa Gateway | LilyGo T3 LoRa32 v1.6.1 | AliExpress |
@@ -135,6 +135,8 @@ The cable enters from the top to allow hanging with the sensor facing down. The 
 > **Note:** Gerber files located in Attachments Folder
 
 For other uses, board has additional access to XIAO GPIO pins if needed. Resistors for i2c (under XIAO) usually not needed but available. XIAO board has built-in battery charging circuitry. **Note:** The above board uses JST 2.0 connectors
+
+- Battery life with the 1800mAh LiPo exceeded 15 hours in testing before recharging. I chose this battery to give enough life during initial optimal placement determination. In practice, the units are typically kept on wired USB-C power when stationary, with battery used mainly for outdoor FRC recalibration runs.
 
 > ⚠️ LiPo batteries often have battery polarity reversed and can cause damage (easy to swap in JST 2.0 connector).
 
@@ -232,6 +234,20 @@ Commands are sent from Node-RED through the OMG gateway as JSON, targeted by dev
 **Hardware:** LilyGo T3 LoRa32 v1.6.1  
 **Firmware:** [OpenMQTTGateway](https://docs.openmqttgateway.com/) v1.8.1
 
+OMG Configuration
+The LilyGo T3 LoRa32 was flashed with OpenMQTTGateway v1.8.1 using their web installer — no Arduino IDE or PlatformIO required. Key configuration settings:
+
+| Setting | Value |
+|---|---|
+| MQTT Broker | MushRmPi (Raspberry Pi running Mosquitto)
+| Topic Prefix | OMGhome 
+| Gateway Name | OMG_LORA_MOAPA
+| WiFi | Required for MQTT connection to broker
+
+
+The LoRa radio parameters (frequency, SF, bandwidth, etc.) are configured via MQTT commands after flashing — see the OMG LoRa documentation for details. The parameters used in this project are listed in the LoRa Radio Parameters table below.
+
+
 ### LoRa Radio Parameters
 
 Both the sensor firmware and OMG must use identical settings:
@@ -254,7 +270,7 @@ Both the sensor firmware and OMG must use identical settings:
 
 ### Incoming Telemetry (OMG → MQTT)
 
-OMG publishes received packets to:
+OMG publishes recieved packets to:
 ```
 OMGhome/OMG_ESP32_LORA/LORAtoMQTT
 ```
