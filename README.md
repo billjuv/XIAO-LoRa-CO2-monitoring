@@ -15,7 +15,7 @@ A wireless CO₂, temperature, and humidity monitoring system for mushroom grow 
 - [MQTT Data Pipeline](#mqtt-data-pipeline)
 - [Node-RED Dashboard](#node-red-dashboard)
 - [InfluxDB & Grafana](#influxdb--grafana)
-- [SCD41 Calibration (FRC)](#scd41-calibration-frc)
+- [SCD41 Calibration (FRC)](#scd41-calibration---frc) 
 - [Known Issues & Lessons Learned](#known-issues--lessons-learned)
 - [Future Enhancements](#future-enhancements)
   
@@ -34,6 +34,7 @@ WiFi has its challanges in the twin metal shipping containers in this mushroom g
 
 The EZO sensors require lab-grade reference gases for recalibration and proved unreliable in this environment (one of two failed and the other EZO-CO2 sensor readings seem considerably lower than expected). The SCD41 supports Forced Recalibration (FRC) using outdoor air (~420 ppm), making field recalibration practical with just a short trip outside. 
 **Note:** The SCD41 has a maximum CO₂ reading of 5000 ppm, whereas the Atlas EZO-CO₂ max is 10,000 ppm. This should not be a problem in most cases as you want to keep the CO₂ level in fruiting well below 1000. During incubation, levels of 10,000 to 20,000 ppm are common - which is beyond the EZO's capabilities as well.
+
 
 ### System Architecture
 
@@ -74,6 +75,14 @@ The EZO sensors require lab-grade reference gases for recalibration and proved u
 | Waterproof USB-C connector | Female waterproof Type-C panel mount | *[fill in]* |
 | PTFE filter membranes | 20mm, 0.3µm pore, hydrophobic, adhesive-backed | Amazon |
 
+
+## Datasheets
+[Sensirion SCD4x](Attachments/Datasheets/Sensirion_SCD4x_Datasheet.pdf)
+
+[Adafruit-SCD40/41](Attachments/Datasheets/adafruit-scd-40-and-scd-41.pdf)
+
+[Adafruit-MAX17048](Attachments/Datasheets/adafruit-max17048-lipoly-liion-fuel-gauge-and-battery-monitor.pdf)
+
 ---
 
 ## Hardware Setup
@@ -85,7 +94,6 @@ The sensor unit is split into two separate 3D-printed boxes connected by a short
 Separating the sensor from the electronics keeps heat from the MCU and LoRa module away from the SCD41, which improves temperature reading accuracy.
 
 <img src=Attachments/Photos/Both_Comp.jpeg width="50%"/>
-
 
 
 - **Main box** — contains the XIAO ESP32S3 + Wio-SX1262, MAX17048, and LiPo battery(under PCB). Houses the waterproof USB-C connector for charging and wired power as well as a button to disconnect battery power if total shutdown is desired.
@@ -105,6 +113,7 @@ The foam around the sensor improves the seal (below).
 <img src=Attachments/Photos/SCD_Enc1.jpeg width="50%"/>
 
 The cable enters from the top to allow hanging with the sensor facing down. The cable grommet shown is 3D printed out of TPU to keep out moisture. Stick-on PTFE membranes are to be placed over vent holes on sides and bottom and replaced as needed.
+
 <img src=Attachments/Photos/SCD_Enc2.jpeg width="50%"/>
 
 (Threaded inserts and end-cap not shown)
@@ -131,9 +140,10 @@ The cable enters from the top to allow hanging with the sensor facing down. The 
 <img src=Attachments/Xiao_Board_Schematic.jpeg width="90%"/>
 <img src=Attachments/XIAO_Batt_Board.jpg width="70%"/>
 
-> **Note:** Gerber files located in Attachments Folder
+> **Note:** Gerber files located in Attachments Folder (Attachments/XIAO_Gerber_PCB1.zip)
 
-For other uses, board has additional access to XIAO GPIO pins if needed. Resistors for i2c (under XIAO) usually not needed but available. XIAO board has built-in battery charging circuitry. **Note:** The above board uses JST 2.0 connectors
+
+For other uses, board has additional access to XIAO GPIO pins if needed. Resistors for i2c (under XIAO) usually not needed but available. XIAO MCU board provides built-in battery charging circuitry. **Note:** The above board uses JST 2.0 connectors
 
 - Battery life with the 1800mAh LiPo exceeded 15 hours in testing before recharging. I chose this battery to give enough life during initial optimal placement determination. In practice, the units are typically kept on wired USB-C power when stationary, with battery used mainly for outdoor FRC recalibration runs.
 
@@ -327,7 +337,7 @@ Wrapped payload format required by OMG:
 (SCD_Temp_Alt.json)
 
 
-**JSON files for all three elements located in "NodeRED" folder** - Import via Node-RED menu → Import → select file
+**JSON files for all three elements are located in "Attachments/NodeRED" folder** - Import via Node-RED menu → Import → select file
 
 **Platform:** Node-RED v3.1.7 with FlowFuse Dashboard 2.0
 
@@ -364,12 +374,17 @@ Data is written to InfluxDB via an **HTTP request node** in Node-RED (not the In
 
 ### Grafana
 
-- Time-series panels for CO₂, temperature, and humidity per sensor
-- **State Timeline panel** used to passively monitor for simultaneous dropout of both XIAO units
+**Sample Grafana Visualization:** (pre-deployment)
+
+<img src=Attachments/Photos/Grafana_sample.jpg width="100%"/>
+
+
+- Additional visualizations not set up yet, but could include Time-series panels for CO₂, temperature, and humidity per sensor
 
 ---
 
-## SCD41 Calibration (FRC) (See the Calibration.md file for more info)
+## SCD41 Calibration - FRC
+[(See the Calibration.md file for more info)](CalibrationGuide.md)
 
 The SCD41 uses **Forced Recalibration (FRC)** rather than Automatic Self-Calibration (ASC). ASC assumes regular exposure to fresh outdoor air (~420 ppm), which does not happen in a sealed mushroom grow environment. ASC is disabled in firmware and the setting is persisted to EEPROM.
 
@@ -432,7 +447,6 @@ Both XIAO units occasionally dropped off at the same time. Monitored via a Grafa
 ## Future Enhancements
 
 - OTA firmware updates triggered via LoRa command, using WiFi over Tailscale for remote flashing without requiring a site visit to Nevada.
-- Temperature offset and altitude compensation controls added to the Node-RED FRC dashboard.
 
 ---
 
