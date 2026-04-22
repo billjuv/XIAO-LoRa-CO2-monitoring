@@ -1,6 +1,6 @@
 # XIAO/LoRa/SCD41 CO₂ Monitoring System
 
-A wireless CO₂, temperature, and humidity monitoring system for mushroom grow operations, using LoRa radio to send sensor data to a central MQTT broker — no WiFi required on the sensor node.
+A wireless CO₂, temperature, and humidity monitoring system for mushroom grow operations, using LoRa radio to send sensor data to a central MQTT broker — no WiFi required on the sensor node. In this project, the remote location is a mushroom grow facility in Nevada, and the local network names and device names used throughout are examples — substitute your own network and device names as appropriate.
 
 
 ---
@@ -428,7 +428,7 @@ Signs calibration may have drifted:
 ## OTA Firmware Updates
 [(See the OTA_Guide.md file for full instructions)](OTA_Guide.md)
 
-Once deployed, firmware updates can be pushed to any sensor unit remotely — no USB cable or physical access required. A LoRa command sent from Node-RED triggers a 3-minute WiFi OTA window on the target device. The update is then pushed from a Mac/Linux terminal using a shell script in the `ota/` folder. The device reboots automatically and resumes normal LoRa operation.
+Once deployed, firmware updates can be pushed to any sensor unit remotely — no USB cable or physical access required. A LoRa command sent from Node-RED triggers a 3-minute WiFi OTA window on the target device. The update is then pushed from a terminal or command prompt using a shell script in the `ota/` folder. The device reboots automatically and resumes normal LoRa operation.
 
 The Node-RED Sensor Calibration dashboard includes a **Trigger OTA Update Period** button that works alongside the existing device selector — select the target unit and press the button. A status confirmation appears on the dashboard when the device has opened its OTA window.
 
