@@ -65,17 +65,19 @@ The EZO sensors require lab-grade reference gases for recalibration and proved u
 
 | Component | Part | Source |
 |---|---|---|
-| MCU + LoRa | Seeed Studio XIAO ESP32S3 + Wio-SX1262 LoRa B2B Kit | Seeed Studio |
-| CO₂/Temp/RH Sensor | Adafruit SCD41 | Adafruit |
-| Battery Monitor | Adafruit MAX17048 LiPoly / LiIon Fuel Gauge | Adafruit |
-| Battery | 3.7V / 1800mAh LiPo | Amazon |
-| LoRa Gateway | LilyGo T3 LoRa32 v1.6.1 | AliExpress |
+| MCU + LoRa | Seeed Studio XIAO ESP32S3 + Wio-SX1262 LoRa B2B Kit | [Seeed Studio](Wio-SX1262-with-XIAO-ESP32S3-p-5982.html) |
+| CO₂/Temp/RH Sensor | Adafruit SCD41 | [Adafruit](https://www.adafruit.com/product/5190?srsltid=AfmBOooh3oM7GaWI46jUPZLEENWeh_0F4iTKuAPATtS-eD_7WIwIb3Oz) |
+| Battery Monitor | Adafruit MAX17048 LiPoly / LiIon Fuel Gauge | [Adafruit](https://www.amazon.com/dp/B0D7CL94L2?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_2&th=1) |
+| Battery | 3.7V / 1800mAh LiPo *| [Amazon](https://www.amazon.com/YELUFT-Rechargeable-Protection-Compatiable-Development/dp/B0F1J7359H/ref=sr_1_6?dib=eyJ2IjoiMSJ9.pjCXThguHmAiR_IywERGdQX_sX2OoZ8LrDLRn55ieJsPLxnohjzWqfsXzmy6yI89Cio3uj3URkKqd906E86h-bsiB7p1QrsNBCcXoGJMAiIq_fkGhcskxiDEmtuyEtM22uWWuC2B0I0D4K2GZigMdeSSa02vBxoLYtJ0UaVo2vC5byY8Br3Vdc4TetSTwc96JWHi6YdS-BLNf5VtgUK58i-5OWxropRLvZT5gBkSFIlT8_mCXCgrIBtZ_ksW86FfaSR0YwaJ1v6itVIjbylrMQusUokvB1SlLFNPtF4q6A0.EEyyXG95mttCLKSZHatFmJeCb-53s5JzMAHgB9dRdTo&dib_tag=se&keywords=lipo%2B1800mAh&qid=1776748293&sr=8-6&th=1
+) |
+| LoRa Gateway | LilyGo T3 LoRa32 v1.6.1 (915mHz)| [AliExpress](https://www.aliexpress.us/item/2251832685763835.html?src=google&src=google&albch=shopping&acnt=231-612-1468&isdl=y&slnk=&plac=&mtctp=&albbt=Google_7_shopping&aff_platform=google&aff_short_key=_oFgTQeV&gclsrc=aw.ds&albagn=888888&ds_e_adid=&ds_e_matchtype=&ds_e_device=c&ds_e_network=x&ds_e_product_group_id=&ds_e_product_id=en2251832685763835&ds_e_product_merchant_id=109240285&ds_e_product_country=US&ds_e_product_language=en&ds_e_product_channel=online&ds_e_product_store_id=&ds_url_v=2&albcp=23333650963&albag=&isSmbAutoCall=false&needSmbHouyi=false&gad_source=1&gad_campaignid=23324517798&gbraid=0AAAABBR8kP2xOwxrKV5uOURVW8DMaRcxS&gclid=CjwKCAjwnZfPBhAGEiwAzg-VzLDYeBgHiBFgLTZA3s40C0xA6wWpEgt4EjpScHEgcRwQtzJ8_KSNaRoCItgQAvD_BwE&gatewayAdapt=glo2usa) |
 | Enclosure (MCU/battery) | Custom 3D printed box | — |
 | Enclosure (sensor) | Custom 3D printed box | — |
-| Sensor cable | *[fill in — length, connector type]* | *[fill in]* |
-| Waterproof USB-C connector | Female waterproof Type-C panel mount | *[fill in]* |
-| PTFE filter membranes | 20mm, 0.3µm pore, hydrophobic, adhesive-backed | Amazon |
+| Sensor cable | 22/4 Stranded/Shielded w/2.54 Female Dupont commectors| Shop parts |
+| Waterproof USB-C connector | Female waterproof Type-C panel mount | [Amazon](https://www.amazon.com/dp/B0D7CL94L2?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_2&th=1) |
+| PTFE filter membranes | 20mm, 0.3µm pore, hydrophobic, adhesive-backed | [Amazon](https://www.amazon.com/dp/B09LD119PF?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_15&th=1) |
 
+*Check battery plug polarity (2.0 JST) - all I had received are reversed from normal. Easy to correct, but do it before you let the smoke out.
 
 ## Datasheets
 [Sensirion SCD4x](Attachments/Datasheets/Sensirion_SCD4x_Datasheet.pdf)
@@ -210,7 +212,7 @@ The result will be something like `LoRa_XIAO1_2C02A7D4DB1C`. This name is used a
 | CPU frequency | Locked to 240 MHz — prevents light sleep from interfering with LoRa interrupts |
 | FRC duplicate guard | Ignores repeated FRC commands with the same target within 30 seconds |
 
-*9 seconds (being a non-round number) makes accidental sync less likely to persist even if boards start up at the same time.
+*During development, 9 seconds (being a non-round number) was found to make accidental sync less likely to persist even if boards start up at the same time. Time was increased to 31 seconds for production.
 
 ---
 
@@ -273,7 +275,7 @@ Both the sensor firmware and OMG must use identical settings:
 | Sync Word | 0x12 (private network) |
 | CRC | Enabled |
 
-> **Sync word 0x12** keeps traffic off public LoRaWAN networks. Do not use 0x34.
+> **Sync word 0x12** keeps traffic off from public LoRaWAN networks. Do not use 0x34.
 
 ---
 
@@ -299,9 +301,12 @@ Example payload:
   "batt_percent": 90.2,
   "batt_crate": -3.95,
   "batt_status": "OK",
-  "crc_errors": 0
+  "crc_errors": 42
 }
 ```
+**Note:** CRC errors in LoRa telemetry
+Each sensor unit tracks and reports cumulative CRC errors — packets received but discarded due to radio corruption or collision. Some level of CRC errors is normal, particularly in metal-walled environments. High counts relative to valid packets received may indicate range, interference, or collision issues worth investigating.
+
 
 ### Node-RED Parsed Topics
 
@@ -406,23 +411,23 @@ Signs calibration may have drifted:
 1. **Check battery** — ensure adequate charge before going outdoors (dashboard battery indicator)
 2. **Take the sensor unit outdoors** — find an open area away from vehicle exhaust, HVAC vents, and any CO₂ sources; ideally a light wind
 3. **Wait 5–10 minutes** — allow the sensor to equilibrate to outdoor air. Watch the live CO₂ reading on the dashboard stabilize
-4. **Note the outdoor CO₂ reading** — typical outdoor air is 415–425 ppm. If readings are in this range, proceed. If far off, allow more stabilization time
+4. **Note the outdoor CO₂ reading** — typical outdoor air is 420–435 ppm. If possible, check for nearby air monitoring web portals for a current reference value 
 5. **Enter the target value** — on the Node-RED FRC panel, enter the current outdoor CO₂ reference value (typically 420 ppm)
 6. **Start the countdown** — the dashboard timer will count down and then send the FRC command automatically (sent 3–4 times for reliability)
 7. **Confirm success** — the sensor will transmit an `frc_applied: true` confirmation. The dashboard will display the result
 8. **Return the sensor** to the grow room and allow 20–30 minutes for readings to stabilize
 
-> **Important:** The sensor must be in stable outdoor conditions *before* the FRC command is sent. The firmware waits 5 seconds before executing the calibration after receiving the command, but the sensor should already be equilibrated by that point.
+> **Important:** The sensor must be in stable outdoor conditions *before* the FRC command is sent (5 minutes minimum). The dashboard waits 15 seconds before executing the calibration after receiving the command. The new readings will not be immediately noticable, it will take several minutes to stablilize.
 
 ### Reference CO₂ Values
 
 | Condition | Expected CO₂ |
 |---|---|
-| Outdoor air (typical) | 425–435 ppm |
+| Outdoor air (typical) | 420–435 ppm |
 | Indoor office/home | 600–1000 ppm |
 | Mushroom incubation room | 10000–20000+ ppm* |
 | Mushroom fruiting room | 500–1500 ppm (species-dependent) |
-*Values commonly found on Internet - unverified.
+*Values commonly mentioned on Internet as optimum - unverified
 
 ---
 
