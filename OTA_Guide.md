@@ -24,7 +24,7 @@ The firmware supports two WiFi networks. On boot into OTA mode, it tries the fir
 
 ### Remote Updates via Tailscale
 
-For devices deployed at a remote location, direct network access from your computer is not possible without a VPN. This guide uses **Tailscale**, a free VPN tool that creates a secure private network between your devices regardless of where they are. With Tailscale running on your computer and on a Raspberry Pi at the remote location, you can reach any device on the remote network as if it were local. Tailscale assigns each device a fixed IP address that does not change, making remote OTA scripts reliable.
+The XIAO sensor nodes themselves cannot run Tailscale. Instead, a Raspberry Pi at the remote location runs Tailscale with **subnet routing** enabled. This makes all devices on the remote local network reachable from your Mac over Tailscale, using their normal local IP addresses. You do not need to know any Tailscale-specific IP for the XIAO units — just their regular local network IP addresses, accessed through the subnet router.
 
 ---
 
@@ -74,16 +74,16 @@ Edit `include/secrets.h` with your actual values:
 This only needs to be done once after cloning the repo. Open Terminal and navigate to the project folder:
 
 ```bash
-cd /path/to/XIAO_LoRa_CO2_Batt
+cd /path/to/XIAO-LoRa-CO2-monitoring
 ```
 
 Then run:
 
 ```bash
 chmod +x ota/ota_xiao1.sh
-chmod +x ota/ota_xiao2.sh
-chmod +x ota/ota_xiao3.sh
-chmod +x ota/ota_xiao4.sh
+chmod +x ota/ota_xiao_co2_1.sh
+chmod +x ota/ota_xiao_co2_2.sh
+chmod +x ota/ota_xiao_co2_3.sh
 ```
 
 If you see `permission denied` when running a script later, repeat the `chmod` command for that script.
@@ -95,7 +95,7 @@ If you see `permission denied` when running a script later, repeat the `chmod` c
 Each script in the `ota/` folder contains the IP address for one device. Open each script and verify or update the `--ip` value:
 
 - **Local devices:** Use the device's local IP address. Check your router's device list or use a network scanner app (e.g. LanScan on Mac) to find it. Setting a DHCP reservation in your router for each device's MAC address will keep the IP stable across reboots.
-- **Remote devices:** Use the device's Tailscale IP. Tailscale IPs are fixed and do not change. Find them in the Tailscale admin panel or app.
+- **Remote devices:** Use the device's local IP address on the remote network. The remote Raspberry Pi runs Tailscale with subnet routing enabled, which makes these local IPs reachable from your Mac over Tailscale without any changes to the XIAO firmware or scripts.
 
 ---
 
@@ -107,7 +107,7 @@ Before the initial USB flash of each unit, open `src/main.cpp` and set:
 #define DEVICE_BASE_NAME "LoRa_XIAO1"   // change for each unit
 ```
 
-Use a unique name for each board (e.g. `LoRa_XIAO1`, `LoRa_XIAO2`, etc.). The full device name — including MAC address — is printed to the serial monitor on every boot. Record this name and update the device table below.
+Use a unique name for each board. The full device name — including MAC address — is printed to the serial monitor on every boot. Record this name and update the device table below.
 
 ---
 
@@ -123,14 +123,12 @@ In VS Code with PlatformIO, click the **Build** button (✓ checkmark in the bot
 
 ### Step 2 — Open two Terminal windows
 
-**Terminal Window 1 — Serial Monitor (optional but recommended):**
+**Terminal Window 1 — Serial Monitor (optional, requires USB connection):**
 
 ```bash
 screen /dev/cu.usbmodem1101 115200
 ```
 
-> This lets you watch the device output during the OTA process. Only works if the device is connected via USB. The device name (`/dev/cu.usbmodem1101`) may differ — check your system if this does not connect.
->
 > To exit screen later: press `Ctrl+A` then `K` then `Y`
 
 **Terminal Window 2 — OTA Upload:**
@@ -138,45 +136,51 @@ screen /dev/cu.usbmodem1101 115200
 Navigate to the project folder:
 
 ```bash
-cd /path/to/XIAO_LoRa_CO2_Batt
+cd /path/to/XIAO-LoRa-CO2-monitoring
 ```
 
 ---
 
 ### Step 3 — Trigger OTA mode from Node-RED
 
-In Node-RED, click the **Inject node** connected to the OTA command for the target device. This sends a LoRa command through the OMG gateway to the device.
+Select the target device in the **Select Sensor** dropdown on the Sensor Calibration dashboard page, then click **Trigger OTA Update Period**. This sends a LoRa command through the appropriate OMG gateway to the device.
 
-The MQTT payload format used is:
+Alternatively, the MQTT payload format is:
 
 ```json
 {"message":"{\"target\":\"LoRa_XIAO1_2C02A7D4DB1C\",\"ota\":true}"}
 ```
 
-Sent to MQTT topic:
+Sent to MQTT topic (local gateway):
 ```
 OMGhome/OMG_ESP32_LORA/commands/MQTTtoLORA
 ```
 
-> Replace `LoRa_XIAO1_2C02A7D4DB1C` with the full device name of the unit you want to update. Only that unit will respond — others will ignore the command.
+Or for Nevada devices:
+```
+MushLoRa/OMG_LORA_MOAPA/commands/MQTTtoLORA
+```
+
+> Only the targeted device will respond — others will ignore the command.
 
 ---
 
 ### Step 4 — Wait for OTA ready confirmation
 
-If monitoring via serial, watch for:
+The Node-RED OTA Status display on the dashboard will show:
+```
+OTA mode started on LoRa_XIAO1_2C02A7D4DB1C - 3 minute window open
+```
 
+If monitoring via USB serial:
 ```
 ✓ OTA mode command received
 --- OTA Mode Triggered via LoRa ---
-OTA acknowledgment sent via LoRa
-LoRa stopped
-Trying YourHomeNetwork...
 WiFi connected: 10.0.x.xxx
 OTA ready - waiting 3 minutes...
 ```
 
-You now have **3 minutes** to push the firmware. If the device cannot connect to either WiFi network, it will return to normal LoRa operation automatically.
+You now have **3 minutes** to push the firmware.
 
 ---
 
@@ -202,14 +206,14 @@ The device reboots automatically after a successful upload and resumes normal Lo
 
 ## Device Reference
 
-Update this table as devices are deployed.
-
 | Script | Device Name | Network | IP Address |
 |--------|-------------|---------|------------|
 | ota_xiao1.sh | LoRa_XIAO1_2C02A7D4DB1C | SSID1 (local) | 10.0.1.113 |
-| ota_xiao2.sh | LoRa_XIAO2_xxxxxxxxxxxx | SSID2 (remote) | TBD (Tailscale) |
-| ota_xiao3.sh | LoRa_XIAO3_xxxxxxxxxxxx | SSID2 (remote) | TBD (Tailscale) |
-| ota_xiao4.sh | LoRa_XIAO4_xxxxxxxxxxxx | SSID2 (remote) | TBD (Tailscale) |
+| ota_xiao_co2_1.sh | LoRa_XIAO_CO2_1_D893A8D4DB1C | SSID2 (remote) | TBD after deployment |
+| ota_xiao_co2_2.sh | LoRa_XIAO_CO2_2_B893A8D4DB1C | SSID2 (remote) | TBD after deployment |
+| ota_xiao_co2_3.sh | LoRa_XIAO_CO2_3_BC1BA7D4DB1C | SSID2 (remote) | TBD after deployment |
+
+> Update IP addresses after deployment. Remote IPs are local network addresses on the SSID2 network, reachable via Tailscale subnet routing on the Nevada Raspberry Pi.
 
 ---
 
@@ -221,38 +225,37 @@ chmod +x ota/ota_xiao1.sh
 ```
 
 **"Host not found" or "Sending invitation failed":**
-- The OTA window is not open — trigger the Node-RED inject node first and wait for `OTA ready` before running the script
+- The OTA window is not open — trigger from Node-RED first and wait for confirmation before running the script
 - The IP address has changed — check your router or LanScan for the current IP and update the script
 - You are not on the same network as the device
-- For Nevada devices: confirm Tailscale is running and connected on your computer
+- For Nevada devices: confirm Tailscale is running and connected on your Mac and that the Nevada Pi subnet router is active
 
 **"Authentication Failed":**
 - The OTA password in the script does not match `OTA_PASSWORD` in `secrets.h`
 - Rebuild and re-flash via USB with matching credentials
 
 **Device appears offline in network scanner during OTA window:**
-- This is normal — the device may not respond to network scanner pings while in the OTA loop. The OTA window is still open. Proceed with the upload script.
+- This is normal — the device may not respond to pings while in the OTA loop. The window is still open. Proceed with the upload script.
 
 **OTA window closed before upload completed:**
-- Trigger the inject node again to open a new 3-minute window
+- Trigger again from Node-RED to open a new 3-minute window
 - Always build firmware before triggering OTA to avoid delays
 
 **Device does not respond to OTA command:**
-- Confirm the device name in the inject node payload matches exactly (case sensitive)
-- Check the serial monitor to confirm the device is running and receiving LoRa packets
+- Confirm the device name in the dropdown matches exactly (case sensitive)
 - The OMG gateway must be online and connected to MQTT for LoRa commands to reach the device
 
 ---
 
-## Nevada / Tailscale Setup Notes
+## Nevada / Tailscale Subnet Routing Notes
 
 For remote Nevada devices:
 
 1. Tailscale must be installed and running on your Mac
-2. Tailscale must be installed and running on the Nevada Raspberry Pi
-3. The Nevada XIAO units connect to the `SSID2` WiFi network when OTA mode is triggered
-4. Their Tailscale IPs are fixed — find them in your Tailscale admin panel and update the `ota/` scripts and device table above after initial deployment
-5. You do not need to be physically present in Nevada — the entire process is remote once Tailscale is configured
+2. Tailscale must be installed and running on the Nevada Raspberry Pi, configured as a **subnet router** advertising the local K1W1 network
+3. The Nevada XIAO units connect to the K1W1 WiFi network when OTA mode is triggered
+4. Use the devices' normal local IP addresses in the OTA scripts — no special Tailscale IPs needed
+5. Update the `ota/` scripts and device table above after initial deployment when IP addresses are known
 
 ---
 

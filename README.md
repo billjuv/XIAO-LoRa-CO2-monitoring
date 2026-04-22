@@ -15,7 +15,8 @@ A wireless CO₂, temperature, and humidity monitoring system for mushroom grow 
 - [MQTT Data Pipeline](#mqtt-data-pipeline)
 - [Node-RED Dashboard](#node-red-dashboard)
 - [InfluxDB & Grafana](#influxdb--grafana)
-- [SCD41 Calibration (FRC)](#scd41-calibration---frc) 
+- [SCD41 Calibration (FRC)](#scd41-calibration---frc)
+- [OTA Firmware Updates](#ota-firmware-updates)
 - [Known Issues & Lessons Learned](#known-issues--lessons-learned)
 - [Future Enhancements](#future-enhancements)
   
@@ -224,6 +225,7 @@ Commands are sent from Node-RED through the OMG gateway as JSON, targeted by dev
 | Get temperature offset | `{"target":"LoRa_XIAO1_2C02A7D4DB1C","get_temp_offset":true}` |
 | Set altitude | `{"target":"LoRa_XIAO1_2C02A7D4DB1C","altitude":1500}` |
 | Get altitude | `{"target":"LoRa_XIAO1_2C02A7D4DB1C","get_altitude":true}` |
+| Trigger OTA update | `{"target":"LoRa_XIAO1_2C02A7D4DB1C","ota":true}` |
 
 > The OMG gateway wraps outgoing commands in a `message` field. The firmware handles both wrapped and unwrapped formats for flexibility.
 
@@ -350,6 +352,7 @@ Wrapped payload format required by OMG:
 - **Multi-send reliability** — FRC command sent 3–4 times at 2-second intervals to account for LoRa packet loss
 - **Watchdog status indicator** — LED goes yellow at 5 min silence, red at 10 min, with "Last seen X min ago" text
 - **Temperature and Altitude calibration** - Converted for "F" and feet. Separate group as likely only done once
+- **OTA trigger button** — select target device from dropdown and press "Trigger OTA Update Period" to initiate remote firmware update
 
 ---
 
@@ -422,6 +425,19 @@ Signs calibration may have drifted:
 
 ---
 
+## OTA Firmware Updates
+[(See the OTA_Guide.md file for full instructions)](OTA_Guide.md)
+
+Once deployed, firmware updates can be pushed to any sensor unit remotely — no USB cable or physical access required. A LoRa command sent from Node-RED triggers a 3-minute WiFi OTA window on the target device. The update is then pushed from a Mac/Linux terminal using a shell script in the `ota/` folder. The device reboots automatically and resumes normal LoRa operation.
+
+The Node-RED Sensor Calibration dashboard includes a **Trigger OTA Update Period** button that works alongside the existing device selector — select the target unit and press the button. A status confirmation appears on the dashboard when the device has opened its OTA window.
+
+For remote Nevada devices, updates are delivered over Tailscale via the Nevada Raspberry Pi subnet router — no site visit needed.
+
+> See `ota/` folder for per-device upload scripts and `include/secrets.h.example` for WiFi and OTA password configuration.
+
+---
+
 ## Known Issues & Lessons Learned
 
 **Duplicate device names from same-batch boards**  
@@ -442,11 +458,15 @@ Automatic CPU frequency scaling and light sleep interfered with the RadioLib int
 **Simultaneous dropout of both units**  
 Both XIAO units occasionally dropped off at the same time. Monitored via a Grafana State Timeline panel. Resolved — was a fluke related to power cycling and battery use at the time, not an ongoing issue.
 
+**OTA via USB boot window not reliable**  
+Initial OTA attempts using a timed WiFi window at boot were abandoned due to conflicts between the PlatformIO serial monitor and the USB port during upload. Replaced with LoRa-triggered OTA, which is more reliable and better suited to remote deployment.
+
 ---
 
 ## Future Enhancements
 
-- OTA firmware updates triggered via LoRa command, using WiFi over Tailscale for remote flashing without requiring a site visit to Nevada.
+- Additional sensor units for expanded grow area coverage
+- Grafana dashboards for long-term CO₂ trend analysis
 
 ---
 
