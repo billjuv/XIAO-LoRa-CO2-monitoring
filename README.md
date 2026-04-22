@@ -1,6 +1,6 @@
 # XIAO/LoRa/SCD41 CO₂ Monitoring System
 
-A wireless CO₂, temperature, and humidity monitoring system for mushroom grow operations, using LoRa radio to send sensor data to a central MQTT broker — no WiFi required on the sensor node. In this project, the remote location is a mushroom grow facility in Nevada, and the local network names and device names used throughout are examples — substitute your own network and device names as appropriate.
+A wireless CO₂, temperature, and humidity monitoring system for mushroom grow operations, using LoRa radio to send sensor data to a central MQTT broker — no WiFi is required on the sensor node. In this project, the remote location is a mushroom grow facility in Nevada, and the local network names and device names used throughout are examples — substitute your own network and device names as appropriate.
 
 
 ---
@@ -31,9 +31,9 @@ This project monitors CO₂ levels in the incubation and fruiting areas of a mus
 
 WiFi has its challanges in the twin metal shipping containers in this mushroom grow space. I want to test the reliability and range of LoRa (not LoRaWAN) in this situation and hopefully be ready for future growth. Ultimately, I wish to expand this method to more remote areas of the farm as well. **Note:** The LilyGo T3 LoRa32 running OpenMQTTGateway does require WiFi to send the data recieved to the MQTT broker.
 
-**Why SCD41 instead of the Atlas Scientific EZO-CO₂?**  
+**Why Sensirion SCD41 instead of the Atlas Scientific EZO-CO₂?**  
 
-The EZO sensors require lab-grade reference gases for recalibration and proved unreliable in this environment (one of two failed and the other EZO-CO2 sensor readings seem considerably lower than expected). The SCD41 supports Forced Recalibration (FRC) using outdoor air (~420 ppm), making field recalibration practical with just a short trip outside. 
+The EZO sensors require lab-grade reference gases for recalibration and proved unreliable in this environment (one of two failed and the other EZO-CO2 sensor readings seem considerably lower than expected). The SCD41 supports Forced Recalibration (FRC) using outdoor air (~425 ppm), making field recalibration practical with just a short trip outside. Cost is also an obvious factor.
 **Note:** The SCD41 has a maximum CO₂ reading of 5000 ppm, whereas the Atlas EZO-CO₂ max is 10,000 ppm. This should not be a problem in most cases as you want to keep the CO₂ level in fruiting well below 1000. During incubation, levels of 10,000 to 20,000 ppm are common - which is beyond the EZO's capabilities as well.
 
 
@@ -104,7 +104,7 @@ Separating the sensor from the electronics keeps heat from the MCU and LoRa modu
 (Threaded inserts and lid not shown)
 
 
-- **Sensor box** — contains the SCD41 only, with a replaceable hydrophobic PTFE membrane filter over the sensor openings. This box can be positioned for optimal airflow independent of power constraints.
+- **Sensor box** — contains the SCD41 only, with a replaceable hydrophobic PTFE membrane filter over the sensor openings (not shown). This box can be positioned for optimal airflow independent of power constraints.
 
 The design of the SCD enclosure takes into account the air flow recommendations from the Sensirion Datasheet.
 <img src=Attachments/Photos/SCD_AirFlow.png width="50%"/>
@@ -203,7 +203,7 @@ The result will be something like `LoRa_XIAO1_2C02A7D4DB1C`. This name is used a
 
 | Behavior | Details |
 |---|---|
-| Measurement interval | 9 seconds (offset from 10s to avoid packet collisions between units)*|
+| Measurement interval | 31 seconds (odd numbers to avoid possible packet collisions between units)*|
 | ASC (auto-calibration) | Disabled on every boot and persisted to EEPROM |
 | LoRa TX mode | Asynchronous — sensor can still receive commands while transmitting |
 | Battery monitoring | MAX17048 detected at startup; if absent, battery fields report 0 / UNKNOWN |
@@ -332,14 +332,15 @@ Wrapped payload format required by OMG:
 ## Node-RED Dashboard
 
 <img src=Attachments/Photos/NR_Sensor.jpg width="70%"/>
-(LoRa_XIAO.json)
+
 <img src=Attachments/Photos/NR_FRC_Set.jpg width="70%"/>
-(SCD_FRC.json)
+
 <img src=Attachments/Photos/NR_SCD41_Calibration.jpg width="70%"/>
-(SCD_Temp_Alt.json)
 
 
-**JSON files for all three elements are located in "Attachments/NodeRED" folder** - Import via Node-RED menu → Import → select file
+**JSON files for all three elements are located in "Attachments/NodeRED" folder** - 
+
+Import these via Node-RED menu → Import → select file
 
 **Platform:** Node-RED v3.1.7 with FlowFuse Dashboard 2.0
 
