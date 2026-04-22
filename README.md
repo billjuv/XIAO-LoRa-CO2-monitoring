@@ -65,7 +65,7 @@ The EZO sensors require lab-grade reference gases for recalibration and proved u
 
 | Component | Part | Source |
 |---|---|---|
-| MCU + LoRa | Seeed Studio XIAO ESP32S3 + Wio-SX1262 LoRa B2B Kit | [Seeed Studio](Wio-SX1262-with-XIAO-ESP32S3-p-5982.html) |
+| MCU + LoRa | Seeed Studio XIAO ESP32S3 + Wio-SX1262 LoRa B2B Kit | [Seeed Studio](https://www.seeedstudio.com/Wio-SX1262-with-XIAO-ESP32S3-p-5982.html?srsltid=AfmBOooeP_Vowj0WumESjsYdbNIdZAmZV2yhTu-AQrC7AMUwOGgeB1oY) |
 | CO₂/Temp/RH Sensor | Adafruit SCD41 | [Adafruit](https://www.adafruit.com/product/5190?srsltid=AfmBOooh3oM7GaWI46jUPZLEENWeh_0F4iTKuAPATtS-eD_7WIwIb3Oz) |
 | Battery Monitor | Adafruit MAX17048 LiPoly / LiIon Fuel Gauge | [Adafruit](https://www.amazon.com/dp/B0D7CL94L2?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_2&th=1) |
 | Battery | 3.7V / 1800mAh LiPo *| [Amazon](https://www.amazon.com/YELUFT-Rechargeable-Protection-Compatiable-Development/dp/B0F1J7359H/ref=sr_1_6?dib=eyJ2IjoiMSJ9.pjCXThguHmAiR_IywERGdQX_sX2OoZ8LrDLRn55ieJsPLxnohjzWqfsXzmy6yI89Cio3uj3URkKqd906E86h-bsiB7p1QrsNBCcXoGJMAiIq_fkGhcskxiDEmtuyEtM22uWWuC2B0I0D4K2GZigMdeSSa02vBxoLYtJ0UaVo2vC5byY8Br3Vdc4TetSTwc96JWHi6YdS-BLNf5VtgUK58i-5OWxropRLvZT5gBkSFIlT8_mCXCgrIBtZ_ksW86FfaSR0YwaJ1v6itVIjbylrMQusUokvB1SlLFNPtF4q6A0.EEyyXG95mttCLKSZHatFmJeCb-53s5JzMAHgB9dRdTo&dib_tag=se&keywords=lipo%2B1800mAh&qid=1776748293&sr=8-6&th=1) |
