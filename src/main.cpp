@@ -29,10 +29,10 @@
 //  for each unit (e.g. "LoRa_XIAO1", "LoRa_XIAO2"). The full
 //  6-byte MAC address is appended automatically as a suffix.
 //  ============================================================
-#define DEVICE_BASE_NAME "LoRa_XIAO1"   // <-- CHANGE THIS for each unit
+//#define DEVICE_BASE_NAME "LoRa_XIAO1"   // <-- CHANGE THIS for each unit
 //#define DEVICE_BASE_NAME "LoRa_XIAO_CO2_1"
 //#define DEVICE_BASE_NAME "LoRa_XIAO_CO2_2"
-//#define DEVICE_BASE_NAME "LoRa_XIAO_CO2_3"
+#define DEVICE_BASE_NAME "LoRa_XIAO_CO2_3"
 
 #include <Arduino.h>
 #include <Wire.h>

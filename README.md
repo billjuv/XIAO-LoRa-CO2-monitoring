@@ -68,7 +68,7 @@ The EZO sensors require lab-grade reference gases for recalibration and proved u
 | MCU + LoRa | Seeed Studio XIAO ESP32S3 + Wio-SX1262 LoRa B2B Kit | [Seeed Studio](https://www.seeedstudio.com/Wio-SX1262-with-XIAO-ESP32S3-p-5982.html?srsltid=AfmBOooeP_Vowj0WumESjsYdbNIdZAmZV2yhTu-AQrC7AMUwOGgeB1oY) |
 | CO₂/Temp/RH Sensor | Adafruit SCD41 | [Adafruit](https://www.adafruit.com/product/5190?srsltid=AfmBOooh3oM7GaWI46jUPZLEENWeh_0F4iTKuAPATtS-eD_7WIwIb3Oz) |
 | Battery Monitor | Adafruit MAX17048 LiPoly / LiIon Fuel Gauge | [Adafruit](https://www.amazon.com/dp/B0D7CL94L2?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_2&th=1) |
-| Battery | 3.7V / 1800mAh LiPo *| [Amazon](https://www.amazon.com/YELUFT-Rechargeable-Protection-Compatiable-Development/dp/B0F1J7359H/ref=sr_1_6?dib=eyJ2IjoiMSJ9.pjCXThguHmAiR_IywERGdQX_sX2OoZ8LrDLRn55ieJsPLxnohjzWqfsXzmy6yI89Cio3uj3URkKqd906E86h-bsiB7p1QrsNBCcXoGJMAiIq_fkGhcskxiDEmtuyEtM22uWWuC2B0I0D4K2GZigMdeSSa02vBxoLYtJ0UaVo2vC5byY8Br3Vdc4TetSTwc96JWHi6YdS-BLNf5VtgUK58i-5OWxropRLvZT5gBkSFIlT8_mCXCgrIBtZ_ksW86FfaSR0YwaJ1v6itVIjbylrMQusUokvB1SlLFNPtF4q6A0.EEyyXG95mttCLKSZHatFmJeCb-53s5JzMAHgB9dRdTo&dib_tag=se&keywords=lipo%2B1800mAh&qid=1776748293&sr=8-6&th=1) |
+| Battery | 3.7V / 1800mAh LiPo | [Amazon](https://www.amazon.com/YELUFT-Rechargeable-Protection-Compatiable-Development/dp/B0F1J7359H/ref=sr_1_6?dib=eyJ2IjoiMSJ9.pjCXThguHmAiR_IywERGdQX_sX2OoZ8LrDLRn55ieJsPLxnohjzWqfsXzmy6yI89Cio3uj3URkKqd906E86h-bsiB7p1QrsNBCcXoGJMAiIq_fkGhcskxiDEmtuyEtM22uWWuC2B0I0D4K2GZigMdeSSa02vBxoLYtJ0UaVo2vC5byY8Br3Vdc4TetSTwc96JWHi6YdS-BLNf5VtgUK58i-5OWxropRLvZT5gBkSFIlT8_mCXCgrIBtZ_ksW86FfaSR0YwaJ1v6itVIjbylrMQusUokvB1SlLFNPtF4q6A0.EEyyXG95mttCLKSZHatFmJeCb-53s5JzMAHgB9dRdTo&dib_tag=se&keywords=lipo%2B1800mAh&qid=1776748293&sr=8-6&th=1) |
 | LoRa Gateway | LilyGo T3 LoRa32 v1.6.1 (915mHz)| [AliExpress](https://www.aliexpress.us/item/2251832685763835.html?src=google&src=google&albch=shopping&acnt=231-612-1468&isdl=y&slnk=&plac=&mtctp=&albbt=Google_7_shopping&aff_platform=google&aff_short_key=_oFgTQeV&gclsrc=aw.ds&albagn=888888&ds_e_adid=&ds_e_matchtype=&ds_e_device=c&ds_e_network=x&ds_e_product_group_id=&ds_e_product_id=en2251832685763835&ds_e_product_merchant_id=109240285&ds_e_product_country=US&ds_e_product_language=en&ds_e_product_channel=online&ds_e_product_store_id=&ds_url_v=2&albcp=23333650963&albag=&isSmbAutoCall=false&needSmbHouyi=false&gad_source=1&gad_campaignid=23324517798&gbraid=0AAAABBR8kP2xOwxrKV5uOURVW8DMaRcxS&gclid=CjwKCAjwnZfPBhAGEiwAzg-VzLDYeBgHiBFgLTZA3s40C0xA6wWpEgt4EjpScHEgcRwQtzJ8_KSNaRoCItgQAvD_BwE&gatewayAdapt=glo2usa) |
 | Enclosure (MCU/battery) | Custom 3D printed box | — |
 | Enclosure (sensor) | Custom 3D printed box | — |
@@ -76,14 +76,18 @@ The EZO sensors require lab-grade reference gases for recalibration and proved u
 | Waterproof USB-C connector | Female waterproof Type-C panel mount | [Amazon](https://www.amazon.com/dp/B0D7CL94L2?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_2&th=1) |
 | PTFE filter membranes | 20mm, 0.3µm pore, hydrophobic, adhesive-backed | [Amazon](https://www.amazon.com/dp/B09LD119PF?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_15&th=1) |
 
-*Check battery plug polarity (2.0 JST) - all I had received are reversed from normal. Easy to correct, but do it before you let the smoke out.
+RE: Vendors - Seeed Studio and Adafruit are good sources for products linked, but [Digikey](https://www.digikey.com) carries these items as well at similar pricing, but web pages chosen were better.
+
+> ⚠️ As with any Lora or RF device, be sure to attach the antenna prior to sending any signals. Damage can occur
+
+> ⚠️ Check battery plug polarity (2.0 JST) - all I had received are reversed from normal. Easy to correct, but do it before you let the smoke out.
 
 ## Datasheets
-[Sensirion SCD4x](Attachments/Datasheets/Sensirion_SCD4x_Datasheet.pdf)
+[Sensirion SCD4x](Extras/Datasheets/Sensirion_SCD4x_Datasheet.pdf)
 
-[Adafruit-SCD40/41](Attachments/Datasheets/adafruit-scd-40-and-scd-41.pdf)
+[Adafruit-SCD40/41](Extras/Datasheets/adafruit-scd-40-and-scd-41.pdf)
 
-[Adafruit-MAX17048](Attachments/Datasheets/adafruit-max17048-lipoly-liion-fuel-gauge-and-battery-monitor.pdf)
+[Adafruit-MAX17048](Extras/Datasheets/adafruit-max17048-lipoly-liion-fuel-gauge-and-battery-monitor.pdf)
 
 ---
 
@@ -139,10 +143,10 @@ The cable enters from the top to allow hanging with the sensor facing down. The 
 
 ### Wiring / Schematic
 
-<img src=Attachments/Xiao_Board_Schematic.jpeg width="90%"/>
-<img src=Attachments/XIAO_Batt_Board.jpg width="70%"/>
+<img src=Attachments/Photos/Xiao_Board_Schematic.jpeg width="90%"/>
+<img src=Attachments/Photos/XIAO_Batt_Board.jpg width="70%"/>
 
-> **Note:** Gerber files located in Attachments Folder (Attachments/XIAO_Gerber_PCB1.zip)
+> **Note:** Gerber files located in Extras Folder (Extras/Gerber Files/XIAO_Gerber_PCB1.zip)
 
 
 For other uses, board has additional access to XIAO GPIO pins if needed. Resistors for i2c (under XIAO) usually not needed but available. XIAO MCU board provides built-in battery charging circuitry. **Note:** The above board uses JST 2.0 connectors
@@ -161,7 +165,7 @@ For other uses, board has additional access to XIAO GPIO pins if needed. Resisto
 - A USB-C cable for initial flashing
 
 ### Repository Files
-- main.cpp — Main firmware source
+- src/main.cpp — Main firmware source
 - platformio.ini — PlatformIO build configuration
 
 
@@ -198,7 +202,8 @@ Each unit auto-generates a unique name from its full 6-byte MAC address. Set the
 
 The result will be something like `LoRa_XIAO1_2C02A7D4DB1C`. This name is used as the MQTT `value` field and as the target address for remote commands.
 
-> ⚠️ Using only the last 3 MAC bytes caused duplicate names on boards from the same batch. The full 6-byte MAC is required.
+> ⚠️ Using only the last 3 MAC bytes caused duplicate names on boards from the same batch. The full 6-byte MAC is required. Note that the MAC bytes are reported in reverse order — the actual MAC address for the example above would be 1C:DB:D4:A7:02:2C.
+
 
 ### Key Firmware Behaviors
 
@@ -342,7 +347,7 @@ Wrapped payload format required by OMG:
 <img src=Attachments/Photos/NR_SCD41_Calibration.jpg width="70%"/>
 
 
-**JSON files for all three elements are located in "Attachments/NodeRED" folder** - 
+**JSON files for all three elements are located in "Extras/NodeRED" folder** - 
 
 Import these via Node-RED menu → Import → select file
 
@@ -446,7 +451,7 @@ For remote Nevada devices, updates are delivered over Tailscale via the Nevada R
 ## Known Issues & Lessons Learned
 
 **Duplicate device names from same-batch boards**  
-Using only the last 3 bytes of the MAC address caused two boards to get identical names. Fixed by using the full 6-byte MAC.
+The full 6-byte MAC is used for device naming, but the bytes are reported in reverse order compared to what your router or network tools will show. Using only the last 3 bytes of the MAC address caused two boards to get identical names. Fixed by using the full 6-byte MAC.
 
 **Spaces in InfluxDB measurement names**  
 Measurement names containing spaces cause silent write failures in InfluxDB line protocol. Use underscores throughout.
