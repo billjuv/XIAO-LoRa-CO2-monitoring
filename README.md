@@ -112,6 +112,7 @@ Separating the sensor from the electronics keeps heat from the MCU and LoRa modu
 - **Sensor box** — contains the SCD41 only, with a replaceable hydrophobic PTFE membrane filter over the sensor openings (not shown). This box can be positioned for optimal airflow independent of power constraints.
 
 The design of the SCD enclosure takes into account the air flow recommendations from the Sensirion Datasheet.
+
 <img src=Attachments/Photos/SCD_AirFlow.png width="50%"/>
 
 The foam around the sensor improves the seal (below).
@@ -153,7 +154,7 @@ For other uses, board has additional access to XIAO GPIO pins if needed. Resisto
 
 - Battery life with the 1800mAh LiPo exceeded 15 hours in testing before recharging. I chose this battery to give enough life during initial optimal placement determination. In practice, the units are typically kept on wired USB-C power when stationary, with battery used mainly for outdoor FRC recalibration runs.
 
-> ⚠️ LiPo batteries often have battery polarity reversed and can cause damage (easy to swap in JST 2.0 connector).
+> ⚠️ LiPo batteries often have battery polarity reversed and can cause damage (easy to swap pins for the JST 2.0 connector).
 
 ---
 
@@ -344,8 +345,7 @@ Wrapped payload format required by OMG:
 
 <img src=Attachments/Photos/NR_FRC_Set.jpg width="70%"/>
 
-<img src=Attachments/Photos/NR_SCD41_Calibration.jpg width="70%"/>
-
+<img src=Attachments/Photos/SCD41 TempAltitude Calibration and OTA Trigger.jpeg width="70%"/>
 
 **JSON files for all three elements are located in "Extras/NodeRED" folder** - 
 
