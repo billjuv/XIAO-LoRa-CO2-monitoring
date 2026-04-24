@@ -345,7 +345,7 @@ Wrapped payload format required by OMG:
 
 <img src=Attachments/Photos/NR_FRC_Set.jpg width="70%"/>
 
-<img src=Attachments/Photos/SCD41 TempAltitude Calibration and OTA Trigger.jpeg width="70%"/>
+<img src=Attachments/Photos/SCD41_TempAltitude_Calibration_and_OTA_Trigger.jpeg width="70%"/>
 
 **JSON files for all three elements are located in "Extras/NodeRED" folder** - 
 
