@@ -45,7 +45,7 @@ Other parts referenced are found in the Bill of Materials on the main ReadMe
 
 ## Filament & Print Settings
 
-3D printing was done on a Bambu Labs A1 printer using Overture PETG filament for the enclosures and Overture 95A TPU for the grommets and gasket. Bambu slicer profiles used were "Generic PETG" for the PETG and "Bambu TPU 95A HF" for the TPU. Part orientation was set using the Bambu slicer Auto-Orient feature. No supports are required for any part.
+3D printing was done on a Bambu Labs A1 printer using Overture PETG filament for the enclosures and Overture High Speed TPU (95A) for the grommets and gasket. Bambu slicer profiles used were "Generic PETG" for the PETG and "Bambu TPU 95A HF" for the TPU. Part orientation was set using the Bambu slicer Auto-Orient feature. No supports are required for any part.
 
 > **Note:** TPU cannot be loaded through the AMS — it must be fed directly. Filaments softer than 95A may not feed reliably with this printer.
 
@@ -94,7 +94,7 @@ This enclosure is sized to fit the Adafruit SCD41 breakout board. The cap design
 
 <img src=Attachments/Photos/cable_grommet.jpg width="70%"/>
 
-The cable grommet is sized for a 4–5mm diameter cable and is used in both the XIAO control box and the SCD41 sensor cap. The lid gasket is a separate CAD part within the enclosure assembly. Both are printed in TPU for flexibility and a weather-resistant seal.
+The cable grommet is sized for a 4–5mm diameter cable and is used in both the XIAO control box and the SCD41 sensor cap. A slit is cut across one side of the cable hole with a utility knife to stretch ofer cable after ends are attached. The lid gasket is a separate CAD part within the enclosure assembly. Both are printed in TPU for flexibility and a weather-resistant seal.
 
 ---
 
