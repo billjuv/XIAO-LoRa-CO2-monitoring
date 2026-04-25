@@ -70,11 +70,13 @@ The EZO sensors require lab-grade reference gases for recalibration and proved u
 | Battery Monitor | Adafruit MAX17048 LiPoly / LiIon Fuel Gauge | [Adafruit](https://www.amazon.com/dp/B0D7CL94L2?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_2&th=1) |
 | Battery | 3.7V / 1800mAh LiPo | [Amazon](https://www.amazon.com/YELUFT-Rechargeable-Protection-Compatiable-Development/dp/B0F1J7359H/ref=sr_1_6?dib=eyJ2IjoiMSJ9.pjCXThguHmAiR_IywERGdQX_sX2OoZ8LrDLRn55ieJsPLxnohjzWqfsXzmy6yI89Cio3uj3URkKqd906E86h-bsiB7p1QrsNBCcXoGJMAiIq_fkGhcskxiDEmtuyEtM22uWWuC2B0I0D4K2GZigMdeSSa02vBxoLYtJ0UaVo2vC5byY8Br3Vdc4TetSTwc96JWHi6YdS-BLNf5VtgUK58i-5OWxropRLvZT5gBkSFIlT8_mCXCgrIBtZ_ksW86FfaSR0YwaJ1v6itVIjbylrMQusUokvB1SlLFNPtF4q6A0.EEyyXG95mttCLKSZHatFmJeCb-53s5JzMAHgB9dRdTo&dib_tag=se&keywords=lipo%2B1800mAh&qid=1776748293&sr=8-6&th=1) |
 | LoRa Gateway | LilyGo T3 LoRa32 v1.6.1 (915mHz)| [AliExpress](https://www.aliexpress.us/item/2251832685763835.html?src=google&src=google&albch=shopping&acnt=231-612-1468&isdl=y&slnk=&plac=&mtctp=&albbt=Google_7_shopping&aff_platform=google&aff_short_key=_oFgTQeV&gclsrc=aw.ds&albagn=888888&ds_e_adid=&ds_e_matchtype=&ds_e_device=c&ds_e_network=x&ds_e_product_group_id=&ds_e_product_id=en2251832685763835&ds_e_product_merchant_id=109240285&ds_e_product_country=US&ds_e_product_language=en&ds_e_product_channel=online&ds_e_product_store_id=&ds_url_v=2&albcp=23333650963&albag=&isSmbAutoCall=false&needSmbHouyi=false&gad_source=1&gad_campaignid=23324517798&gbraid=0AAAABBR8kP2xOwxrKV5uOURVW8DMaRcxS&gclid=CjwKCAjwnZfPBhAGEiwAzg-VzLDYeBgHiBFgLTZA3s40C0xA6wWpEgt4EjpScHEgcRwQtzJ8_KSNaRoCItgQAvD_BwE&gatewayAdapt=glo2usa) |
+| USB-C connector | Female waterproof Type-C panel mount | [Amazon](https://www.amazon.com/dp/B0D7CL94L2?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_2&th=1) |
+| PTFE filter membranes | 20mm, 0.3µm pore, hydrophobic, adhesive-backed | [Amazon](https://www.amazon.com/dp/B09LD119PF?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_15&th=1) |
+| Waterproof On/Off Switch | 12mm push-on, push-off IP65 | [Amazon](https://www.amazon.com/dp/B0D5CVJGYF?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_4&th=1) |
+| Sensor cable | 22/4 Stranded/Shielded w/2.54 Female Dupont commectors| Shop parts |
 | Enclosure (MCU/battery) | Custom 3D printed box | — |
 | Enclosure (sensor) | Custom 3D printed box | — |
-| Sensor cable | 22/4 Stranded/Shielded w/2.54 Female Dupont commectors| Shop parts |
-| Waterproof USB-C connector | Female waterproof Type-C panel mount | [Amazon](https://www.amazon.com/dp/B0D7CL94L2?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_2&th=1) |
-| PTFE filter membranes | 20mm, 0.3µm pore, hydrophobic, adhesive-backed | [Amazon](https://www.amazon.com/dp/B09LD119PF?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_15&th=1) |
+
 
 RE: Vendors - Seeed Studio and Adafruit are good sources for products linked, but [Digikey](https://www.digikey.com) carries these items as well at similar pricing, but web pages chosen were better.
 
