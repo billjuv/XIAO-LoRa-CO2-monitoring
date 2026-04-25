@@ -79,6 +79,7 @@ This enclosure houses the XIAO ESP32S3 + Wio-SX1262, MAX17048 fuel gauge, and Li
 <img src=Attachments/Photos/SCD4x_box_cap.jpg width="70%"/>
 <img src=Attachments/Photos/SCD4X_box.jpg width="70%"/>
 <img src=Attachments/Photos/SCD_Enc1.jpeg width="70%"/>
+<img src=Attachments/Photos/Print_orientation.jpg width="70%"/>
 
 This enclosure is sized to fit the Adafruit SCD41 breakout board. The cap design allows the cable to enter from the top, so the unit can be hung with the sensor facing downward for optimal airflow per the Sensirion datasheet recommendations.
 
