@@ -73,8 +73,8 @@ The EZO sensors require lab-grade reference gases for recalibration and proved u
 | USB-C connector | Female waterproof Type-C panel mount | [Amazon](https://www.amazon.com/dp/B0D7CL94L2?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_2&th=1) |
 | Waterproof On/Off Switch | 12mm push-on, push-off IP65 | [Amazon](https://www.amazon.com/dp/B0D5CVJGYF?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_4&th=1) |
 | PTFE filter membranes | 20mm, 0.3µm pore, hydrophobic, adhesive-backed | [Amazon](https://www.amazon.com/dp/B09LD119PF?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_15&th=1) |
-| Sensor cable | 22/4 Stranded/Shielded | Shop parts |
-| Sensor cable connectors | 2.54 Female JST XH "Dupont" commectors| [Amazon](https://www.amazon.com/dp/B0897KGG59?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_108) |
+| Sensor cable | 22/4 Stranded/Shielded (connectors below added)| Spare shop supplies |
+| Sensor cable connectors | 2.54 Female JST XH "Dupont" connectors| [Amazon](https://www.amazon.com/dp/B0897KGG59?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_108) |
 | Enclosure (MCU/battery) | Custom 3D printed box | [See Enclosures.md](Enclosures.md) |
 | Enclosure (sensor) | Custom 3D printed box | [See Enclosures.md](Enclosures.md) |
 
