@@ -36,7 +36,6 @@ These documents are public and accessible to all Onshape users.
 |---|---|---|
 | PETG Filament | Overture PETG | [Amazon](https://www.amazon.com/OVERTURE-Filament-Consumables-Dimensional-Accuracy/dp/B07PDV9RC8/ref=sr_1_1_pp?dib=eyJ2IjoiMSJ9.z4MlxnKNtLOHoVnvh2oP8H0K8s-CFVDJ4v982m4bLQODpiXLCpETpcVSR9BAd5oXkeuO7ngcwz_oPgcJKuHpii5Vgs4UHbpOsM5J0sIyd8iHP2K-NKucFK9leWvfs4betKIu6tRBtn5Ulej7RkpNpHbrlm7kwLzL9K3kecc7cVA8pvCW7EoHUi4KExtqC62Rh1Rw9CYEdPRO55hypme0CgqlgAhBViyAbSfWksgZUHY.O4-dCwqv886fiZ_hDR48X6P3_b85QcAK0loUv2RN2Y4&dib_tag=se&keywords=OVERTURE%2Bpetg&qid=1777092897&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sr=8-1&th=1) |
 | TPU Filament | Overture "High Speed" TPU (95A)| [Amazon](https://www.amazon.com/dp/B08BC654PS?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1) |
-| Brass Threaded Inserts (2mm) | For PCB mounting posts | [Amazon](https://www.amazon.com/dp/B0FJXLNMLM?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_1) |
 | Brass Threaded Inserts (2.5mm) | For lid and cap mounting | [Amazon](https://www.amazon.com/dp/B0FJXLGHY4?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_1) |
 | Screws (2mm x 5mm) | PCB mounting — 2 per unit | [Amazon](https://www.amazon.com/dp/B082XXXRV6?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_3)|
 | Screws (2.5mm x 5mm) | Lid and cap mounting | [Amazon](https://www.amazon.com/dp/B07YS94FFP?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_5) |
