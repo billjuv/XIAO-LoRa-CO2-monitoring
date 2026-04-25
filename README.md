@@ -158,6 +158,9 @@ For other uses, board has additional access to XIAO GPIO pins if needed. Resisto
 
 > ⚠️ LiPo batteries often have battery polarity reversed and can cause damage (easy to swap pins for the JST 2.0 connector).
 
+Enclosures & 3D Printing
+Both enclosures, the cable grommet, and the lid gasket are custom 3D-printed parts. Full documentation including Onshape links, print settings, materials, and assembly notes is in [ENCLOSURES.md](Enclosures.md).
+
 ---
 
 ## Firmware
