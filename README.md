@@ -1,4 +1,5 @@
 # XIAO/LoRa/SCD41 CO₂ Monitoring System
+> 🍄 One of several related projects. See the full list at **[billjuv.github.io](https://billjuv.github.io)**.
 
 A wireless CO₂, temperature, and humidity monitoring system for mushroom grow operations, using LoRa radio to send sensor data to a central MQTT broker — no WiFi is required on the sensor node. In this project, the remote location is a mushroom grow facility in Nevada, and the local network names and device names used throughout are examples — substitute your own network and device names as appropriate.
 
