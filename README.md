@@ -262,9 +262,9 @@ Commands are sent from Node-RED through the OMG gateway as JSON, targeted by dev
 **Firmware:** [OpenMQTTGateway](https://docs.openmqttgateway.com/) v1.8.1
 
 OMG Configuration
-The LilyGo T3 LoRa32 was flashed with OpenMQTTGateway v1.8.1 using their web installer — no Arduino IDE or PlatformIO required. Key configuration settings:
+The LilyGo T3 LoRa32 was flashed with OpenMQTTGateway v1.8.1 using their web installer (select environment "ttgo-lora32-v21")— no Arduino IDE or PlatformIO required. Key configuration settings:
 
-| Setting | Value |
+| Setting | Value | 
 |---|---|
 | MQTT Broker | MushRmPi (Raspberry Pi running Mosquitto)
 | Topic Prefix | OMGhome 
